@@ -38,9 +38,14 @@ export const AuthProvider = ({ children }) => {
           router.replace('/');
         }, 2000);
       })
-      .catch((err) =>
-        notification({ message: err.response.data.message, type: 'error' })
-      )
+      .catch((err) => {
+        console.log(err.response.data.message);
+
+        notification({
+          message: 'Email or Password is Not Registered',
+          type: 'error',
+        });
+      })
       .finally(() => setIsLoading(false));
   };
 

@@ -59,8 +59,7 @@ export const AuthProvider = ({ children }) => {
         notification({ message: 'Register Successfully', type: 'success' });
 
         setTimeout(() => {
-          mutate();
-          router.replace('/account');
+          login(props);
         }, 2000);
       })
       .catch((err) =>

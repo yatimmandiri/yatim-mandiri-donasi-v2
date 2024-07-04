@@ -42,7 +42,7 @@ export const AuthProvider = ({ children }) => {
         console.log(err.response.data.message);
 
         notification({
-          message: 'Email or Password is Not Registered',
+          message: err.response.data.message,
           type: 'error',
         });
       })
@@ -63,7 +63,12 @@ export const AuthProvider = ({ children }) => {
           router.replace('/account');
         }, 2000);
       })
-      .catch((err) => console.log(err.response.data.message))
+      .catch((err) =>
+        notification({
+          message: err.response.data.message,
+          type: 'error',
+        })
+      )
       .finally(() => setIsLoading(false));
   };
 
@@ -84,7 +89,12 @@ export const AuthProvider = ({ children }) => {
           router.replace('/auth');
         }, 2000);
       })
-      .catch((err) => console.log(err.response.data.message))
+      .catch((err) =>
+        notification({
+          message: err.response.data.message,
+          type: 'error',
+        })
+      )
       .finally(() => setIsLoading(false));
   };
 
@@ -105,7 +115,12 @@ export const AuthProvider = ({ children }) => {
           router.replace('/auth');
         }, 2000);
       })
-      .catch((err) => console.log(err.response.data.message))
+      .catch((err) =>
+        notification({
+          message: err.response.data.message,
+          type: 'error',
+        })
+      )
       .finally(() => setIsLoading(false));
   };
 
@@ -116,7 +131,12 @@ export const AuthProvider = ({ children }) => {
     await laravel
       .post('/api/backend/profile', props)
       .then(() => mutate())
-      .catch((err) => console.log(err.response.data.message))
+      .catch((err) =>
+        notification({
+          message: err.response.data.message,
+          type: 'error',
+        })
+      )
       .finally(() => setIsLoading(false));
   };
 
@@ -133,7 +153,12 @@ export const AuthProvider = ({ children }) => {
           router.refresh();
         }, 2000);
       })
-      .catch((err) => console.log(err.response.data.message))
+      .catch((err) =>
+        notification({
+          message: err.response.data.message,
+          type: 'error',
+        })
+      )
       .finally(() => setIsLoading(false));
   };
 

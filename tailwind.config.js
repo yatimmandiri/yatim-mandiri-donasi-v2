@@ -1,18 +1,37 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/layouts/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      colors: {
+        baseColor: {
+          50: '#fef5ee',
+          100: '#fde9d7',
+          200: '#fbcead',
+          300: '#f8ac79',
+          400: '#f47f43',
+          500: '#f16022',
+          600: '#e24414',
+          700: '#bb3113',
+          800: '#952817',
+          900: '#782416',
+          950: '#410f09',
+        },
+      },
+      fontFamily: {
+        inter: ['var(--font-inter)'],
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/typography'),
+    require('@tailwindcss/forms'),
+    require('@tailwindcss/aspect-ratio'),
+    require('tailwind-scrollbar-hide'),
+  ],
 };

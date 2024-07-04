@@ -7,7 +7,7 @@ export const SessionCheckComponent = () => {
 
   return (
     <div>
-      <p>{session ? 'Sudah Login' : 'Belum Login'}</p>
+      <p>{session ? session.email : 'Belum Login'}</p>
       {session && <button onClick={() => logout()}>Logout</button>}
     </div>
   );

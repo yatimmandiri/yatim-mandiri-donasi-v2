@@ -38,7 +38,9 @@ export const AuthProvider = ({ children }) => {
           router.replace('/');
         }, 2000);
       })
-      .catch((err) => console.log(err.response.data.message))
+      .catch((err) =>
+        notification({ message: err.response.data.message, type: 'error' })
+      )
       .finally(() => setIsLoading(false));
   };
 

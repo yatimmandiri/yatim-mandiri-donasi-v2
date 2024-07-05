@@ -2,6 +2,7 @@
 
 import { laravel } from '@/libs/axios';
 import { notification } from '@/utils/toast';
+import { deleteCookie, getCookies } from 'cookies-next';
 import { useRouter } from 'next/navigation';
 import { createContext, useContext, useEffect, useState } from 'react';
 import useSWR from 'swr';
@@ -149,6 +150,9 @@ export const AuthProvider = ({ children }) => {
 
         setTimeout(() => {
           mutate();
+          getCookies().forEach((element) => {
+            deleteCookie(element.name);
+          });
           router.replace('/?logout=true');
         }, 2000);
       })

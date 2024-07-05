@@ -58,7 +58,6 @@ export const AuthProvider = ({ children }) => {
     await laravel
       .post('/api/backend/register', props)
       .then((response) => {
-        mutate();
         notification({ message: response.data.message, type: 'success' });
         console.log(response.data);
 

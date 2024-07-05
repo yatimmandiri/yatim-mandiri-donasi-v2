@@ -1,3 +1,9 @@
+import { SessionCheckComponent } from '@/components/sections/SessionCheckComponent';
+
 export default function AccountPage() {
-  return <div>AccountPage</div>;
+  return (
+    <div>
+      <SessionCheckComponent />
+    </div>
+  );
 }

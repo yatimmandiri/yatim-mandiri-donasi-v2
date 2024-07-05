@@ -58,12 +58,13 @@ export const AuthProvider = ({ children }) => {
     await laravel
       .post('/api/backend/register', props)
       .then((response) => {
+        router.refresh();
+        mutate();
         notification({ message: response.data.message, type: 'success' });
         console.log(response.data);
 
         setTimeout(() => {
-          router.refresh();
-          router.push('/?register=true');
+          router.push('/auth?register=true');
         }, 2000);
       })
       .catch((err) =>

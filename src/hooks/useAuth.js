@@ -59,7 +59,12 @@ export const AuthProvider = ({ children }) => {
         notification({ message: 'Register Successfully', type: 'success' });
 
         setTimeout(() => {
-          login(props);
+          console.log(err.response.data.message);
+
+          notification({
+            message: err.response.data.message,
+            type: 'error',
+          });
         }, 2000);
       })
       .catch((err) =>

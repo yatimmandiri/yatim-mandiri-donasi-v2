@@ -31,7 +31,7 @@ export const AuthProvider = ({ children }) => {
     await laravel
       .post('/api/backend/login', credentials)
       .then((response) => {
-        notification({ message: response.data.message, type: 'success' });
+        notification({ message: 'Login Successfully', type: 'success' });
 
         setTimeout(() => {
           mutate();
@@ -57,10 +57,9 @@ export const AuthProvider = ({ children }) => {
       .post('/api/backend/register', props)
       .then((response) => {
         notification({ message: response.data.message, type: 'success' });
-
         setTimeout(() => {
           mutate();
-          router.replace('/account');
+          router.replace('/auth');
         }, 2000);
       })
       .catch((err) =>

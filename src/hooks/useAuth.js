@@ -149,7 +149,7 @@ export const AuthProvider = ({ children }) => {
 
         setTimeout(() => {
           mutate();
-          router.refresh();
+          router.replace('/?logout=true');
         }, 2000);
       })
       .catch((err) =>

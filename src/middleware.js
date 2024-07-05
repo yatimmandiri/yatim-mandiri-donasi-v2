@@ -1,8 +1,9 @@
 import { NextResponse } from 'next/server';
 
 export default function Middleware(request) {
-  const routesProtected = ['/histori', '/account'];
+  const response = NextResponse.next();
 
+  const routesProtected = ['/histori', '/account'];
   const { pathname } = request.nextUrl;
 
   let token = request.cookies.get('sessionToken');
@@ -20,4 +21,10 @@ export default function Middleware(request) {
       return NextResponse.redirect(new URL('/', request.url));
     }
   }
+
+  return response;
 }
+
+export const config = {
+  matcher: ['/histori/:function*', '/account/:function*'],
+};

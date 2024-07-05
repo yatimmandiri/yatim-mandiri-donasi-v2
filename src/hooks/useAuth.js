@@ -31,11 +31,11 @@ export const AuthProvider = ({ children }) => {
     await laravel
       .post('/api/backend/login', credentials)
       .then((response) => {
-        notification({ message: 'Login Successfully', type: 'success' });
+        notification({ message: response.data.message, type: 'success' });
 
         setTimeout(() => {
           mutate();
-          router.replace('/');
+          router.replace('/account');
         }, 2000);
       })
       .catch((err) => {
@@ -55,12 +55,12 @@ export const AuthProvider = ({ children }) => {
 
     await laravel
       .post('/api/backend/register', props)
-      .then(() => {
-        notification({ message: 'Register Successfully', type: 'success' });
+      .then((response) => {
+        notification({ message: response.data.message, type: 'success' });
 
         setTimeout(() => {
           mutate();
-          router.replace('/');
+          router.replace('/account');
         }, 2000);
       })
       .catch((err) =>
@@ -78,9 +78,9 @@ export const AuthProvider = ({ children }) => {
 
     await laravel
       .post('/api/backend/forgot-password', props)
-      .then(() => {
+      .then((response) => {
         notification({
-          message: 'Forgot Password Successfully',
+          message: response.data.message,
           type: 'success',
         });
 

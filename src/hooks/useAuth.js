@@ -2,7 +2,6 @@
 
 import { laravel } from '@/libs/axios';
 import { notification } from '@/utils/toast';
-import { deleteCookie, getCookies } from 'cookies-next';
 import { useRouter } from 'next/navigation';
 import { createContext, useContext, useEffect, useState } from 'react';
 import useSWR from 'swr';
@@ -32,11 +31,13 @@ export const AuthProvider = ({ children }) => {
     await laravel
       .post('/api/backend/login', credentials)
       .then((response) => {
+        mutate();
         notification({ message: 'Login Successfully', type: 'success' });
+        console.log(response.data);
 
         setTimeout(() => {
-          mutate();
-          router.replace('/account');
+          router.refresh();
+          router.push('/auth?masuk=true');
         }, 2000);
       })
       .catch((err) => {
@@ -57,10 +58,13 @@ export const AuthProvider = ({ children }) => {
     await laravel
       .post('/api/backend/register', props)
       .then((response) => {
+        mutate();
         notification({ message: response.data.message, type: 'success' });
+        console.log(response.data);
+
         setTimeout(() => {
-          mutate();
-          router.replace('/auth');
+          router.refresh();
+          router.push('/auth?register=true');
         }, 2000);
       })
       .catch((err) =>
@@ -79,14 +83,14 @@ export const AuthProvider = ({ children }) => {
     await laravel
       .post('/api/backend/forgot-password', props)
       .then((response) => {
+        mutate();
         notification({
           message: response.data.message,
           type: 'success',
         });
 
         setTimeout(() => {
-          mutate();
-          router.replace('/auth');
+          router.push('/auth');
         }, 2000);
       })
       .catch((err) =>
@@ -105,14 +109,14 @@ export const AuthProvider = ({ children }) => {
     await laravel
       .post('/api/backend/reset-password', props)
       .then(() => {
+        mutate();
         notification({
           message: 'Reset Password Successfully',
           type: 'success',
         });
 
         setTimeout(() => {
-          mutate();
-          router.replace('/auth');
+          router.push('/auth');
         }, 2000);
       })
       .catch((err) =>
@@ -145,15 +149,12 @@ export const AuthProvider = ({ children }) => {
 
     await laravel
       .post('/api/backend/logout')
-      .then(() => {
+      .then((response) => {
+        mutate(null);
         notification({ message: 'Logout Successfully', type: 'success' });
 
         setTimeout(() => {
-          mutate();
-          getCookies().forEach((element) => {
-            deleteCookie(element.name);
-          });
-          router.replace('/?logout=true');
+          router.push('/auth?logout=true');
         }, 2000);
       })
       .catch((err) =>
@@ -165,7 +166,9 @@ export const AuthProvider = ({ children }) => {
       .finally(() => setIsLoading(false));
   };
 
-  useEffect(() => {}, [session]);
+  useEffect(() => {
+    console.log(session);
+  }, [session]);
 
   const contextValue = {
     session,

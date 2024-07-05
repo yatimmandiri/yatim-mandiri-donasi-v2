@@ -1,7 +1,6 @@
 import { NextResponse } from 'next/server';
 
 export default function Middleware(request) {
-  const response = NextResponse.next();
   const routesProtected = ['/histori', '/account'];
 
   const { pathname } = request.nextUrl;
@@ -21,6 +20,4 @@ export default function Middleware(request) {
       return NextResponse.redirect(new URL('/', request.url));
     }
   }
-
-  return response;
 }

@@ -37,7 +37,7 @@ export const AuthProvider = ({ children }) => {
 
         setTimeout(() => {
           router.refresh();
-          router.push('/auth?masuk=true');
+          router.push('/?masuk=true');
         }, 2000);
       })
       .catch((err) => {
@@ -64,7 +64,7 @@ export const AuthProvider = ({ children }) => {
 
         setTimeout(() => {
           router.refresh();
-          router.push('/auth?register=true');
+          router.push('/?register=true');
         }, 2000);
       })
       .catch((err) =>
@@ -154,7 +154,8 @@ export const AuthProvider = ({ children }) => {
         notification({ message: 'Logout Successfully', type: 'success' });
 
         setTimeout(() => {
-          router.push('/auth?logout=true');
+          router.refresh();
+          router.push('/?logout=true');
         }, 2000);
       })
       .catch((err) =>

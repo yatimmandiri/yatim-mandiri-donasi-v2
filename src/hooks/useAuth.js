@@ -35,7 +35,7 @@ export const AuthProvider = ({ children }) => {
         mutate();
         notification({ message: 'Login Successfully', type: 'success' });
         console.log(response.data);
-        setCookie('sessionToken', response.data.access_token);
+        setCookie('sessionToken', response.data.data.access_token);
 
         setTimeout(() => {
           router.refresh();

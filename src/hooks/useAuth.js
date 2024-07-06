@@ -2,6 +2,7 @@
 
 import { laravel } from '@/libs/axios';
 import { notification } from '@/utils/toast';
+import { deleteCookie, setCookie } from 'cookies-next';
 import { useRouter } from 'next/navigation';
 import { createContext, useContext, useEffect, useState } from 'react';
 import useSWR from 'swr';
@@ -34,6 +35,7 @@ export const AuthProvider = ({ children }) => {
         mutate();
         notification({ message: 'Login Successfully', type: 'success' });
         console.log(response.data);
+        setCookie('sessionToken', response.data.access_token);
 
         setTimeout(() => {
           router.refresh();
@@ -151,6 +153,7 @@ export const AuthProvider = ({ children }) => {
       .post('/api/backend/logout')
       .then((response) => {
         mutate(null);
+        deleteCookie('sessionToken');
         notification({ message: 'Logout Successfully', type: 'success' });
 
         setTimeout(() => {

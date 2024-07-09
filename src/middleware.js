@@ -18,13 +18,7 @@ export default function Middleware(request) {
 
   if (pathname.startsWith('/auth')) {
     if (token) {
-      return NextResponse.redirect(new URL('/', request.url));
+      return NextResponse.redirect(new URL(`${pathname}`, request.url));
     }
   }
-
-  return response;
 }
-
-export const config = {
-  matcher: ['/histori/:function*', '/account/:function*'],
-};

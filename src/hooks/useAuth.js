@@ -182,6 +182,7 @@ export const AuthProvider = ({ children }) => {
         notification({ message: 'Logout Successfully', type: 'success' });
 
         setTimeout(() => {
+          router.refresh();
           router.replace('/?logout=true');
           router.refresh();
         }, 2000);

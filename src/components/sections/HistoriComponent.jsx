@@ -393,9 +393,8 @@ export const VirtualAccountComponent = ({ items = [] }) => {
     items.relationship.rekenings.provider,
     items.relationship.rekenings.token,
     items.bill_key,
-    items.biller_code,
-    items.permata_va_number,
-    items.va_numbers,
+    items.bill_code,
+    items.va_number,
   ]);
 
   switch (items.relationship.rekenings.group) {

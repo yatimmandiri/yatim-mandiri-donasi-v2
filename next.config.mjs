@@ -2,7 +2,12 @@
 const nextConfig = {
   distDir: 'build',
   images: {
+    dangerouslyAllowSVG: true,
     remotePatterns: [
+      {
+        protocol: 'http',
+        hostname: '127.0.0.1',
+      },
       {
         protocol: 'https',
         hostname: 'next.yatimmandiri.org',
@@ -10,6 +15,10 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'yatimmandiri.org',
+      },
+      {
+        protocol: 'https',
+        hostname: 'ui-avatars.com',
       },
     ],
   },

@@ -1,5 +1,7 @@
 import '@/app/globals.css';
 import 'react-toastify/dist/ReactToastify.css';
+import 'swiper/css';
+import 'swiper/css/pagination';
 
 import { AuthProvider } from '@/hooks/useAuth';
 import { Inter } from 'next/font/google';

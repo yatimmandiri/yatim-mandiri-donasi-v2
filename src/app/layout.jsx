@@ -5,6 +5,7 @@ import 'swiper/css/pagination';
 
 import { AuthProvider } from '@/hooks/useAuth';
 import { Inter } from 'next/font/google';
+import { Suspense } from 'react';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -21,7 +22,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang='en' className={inter.className}>
       <body>
-        <AuthProvider>{children}</AuthProvider>
+        <Suspense fallback={null}>
+          <AuthProvider>{children}</AuthProvider>
+        </Suspense>
       </body>
     </html>
   );

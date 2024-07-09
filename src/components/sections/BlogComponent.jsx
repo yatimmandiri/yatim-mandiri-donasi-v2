@@ -9,6 +9,7 @@ import {
 import { InputTextComponent } from '@/components/partials/InputComponent';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 import classNames from 'classnames';
+import Image from 'next/image';
 import Link from 'next/link';
 import InfiniteScroll from 'react-infinite-scroll-component';
 

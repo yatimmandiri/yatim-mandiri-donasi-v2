@@ -50,7 +50,7 @@ export const KalkulatorProvider = ({ data = [], children }) => {
     setNishabPerbulan(
       parseInt((currentHargaEmas?.current_price_gold * 85) / 12)
     );
-  }, [data]);
+  }, [setEmasPerGram, setNishabPertahun, setNishabPerbulan, currentHargaEmas]);
 
   const contextValue = {
     currentHargaEmas,

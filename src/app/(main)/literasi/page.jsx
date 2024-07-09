@@ -1,4 +1,3 @@
-import { PilihanLiterasiComponent } from '@/components/sections/PilihanLiterasiComponent';
 import { AppLayout } from '@/layouts/AppLayout';
 import { GetDataBlog, GetDataNews } from '@/services/AppService';
 
@@ -17,9 +16,9 @@ export default async function LiterasiPage() {
 
   return (
     <AppLayout context={contextValue}>
-      <div className='flex flex-col p-4'>
+      {/* <div className='flex flex-col p-4'>
         <PilihanLiterasiComponent news={news} blogs={blogs} />
-      </div>
+      </div> */}
     </AppLayout>
   );
 }

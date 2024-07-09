@@ -184,7 +184,6 @@ export const AuthProvider = ({ children }) => {
         setTimeout(() => {
           router.refresh();
           router.replace('/?logout=true');
-          router.refresh();
         }, 2000);
       })
       .catch((err) =>

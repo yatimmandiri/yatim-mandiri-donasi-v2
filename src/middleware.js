@@ -3,22 +3,38 @@ import { NextResponse } from 'next/server';
 export default function Middleware(request) {
   const response = NextResponse.next();
 
-  const routesProtected = ['/histori', '/account'];
+  let token = request.cookies.has('sessionToken');
   const { pathname } = request.nextUrl;
 
-  let token = request.cookies.get('sessionToken');
-
-  if (routesProtected.some((prefix) => pathname.startsWith(prefix))) {
+  if (pathname.startsWith('/histori')) {
     if (!token) {
       return NextResponse.redirect(
         new URL(`/auth/login?callbackUrl=${pathname}`, request.url)
       );
+    } else {
+      return response;
     }
   }
 
-  if (pathname.startsWith('/auth')) {
+  if (pathname.startsWith('/account')) {
+    if (!token) {
+      return NextResponse.redirect(
+        new URL(`/auth/login?callbackUrl=${pathname}`, request.url)
+      );
+    } else {
+      return response;
+    }
+  }
+
+  if (pathname.startsWith('/auth/:path*')) {
     if (token) {
-      return NextResponse.redirect(new URL(`${pathname}`, request.url));
+      return NextResponse.redirect(new URL(`/`, request.url));
+    } else {
+      return response;
     }
   }
 }
+
+export const config = {
+  matcher: ['/histori/:path*', '/account/:path*'],
+};

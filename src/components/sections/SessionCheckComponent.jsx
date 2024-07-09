@@ -15,7 +15,6 @@ export const SessionCheckComponent = () => {
           <Link href={'/auth/login'}>Belum Login</Link>
         )}
       </p>
-      {session && <button onClick={() => logout()}>Logout</button>}
     </div>
   );
 };

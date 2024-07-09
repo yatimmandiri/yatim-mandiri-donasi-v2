@@ -13,6 +13,7 @@ import {
   StarIcon,
 } from '@heroicons/react/24/outline';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import { createElement, useState } from 'react';
 import { FaInfoCircle, FaWhatsapp } from 'react-icons/fa';
 import {
@@ -101,6 +102,8 @@ export const BadgeAccountComponent = () => {
 };
 
 export const MenuAccountComponent = () => {
+  const router = useRouter();
+
   const [showSyarat, setShowSyarat] = useState(false);
   const [showFAQ, setShowFAQ] = useState(false);
   const [showPrivasi, setShowPrivasi] = useState(false);
@@ -171,7 +174,9 @@ export const MenuAccountComponent = () => {
           <p className='p-2'>Apakah Anda Ingin Keluar ?</p>
           <div className='flex-1 text-right justify-end items-end'>
             <ButtonComponent
-              onClick={() => submitLogout() && setShowLogout(false)}
+              onClick={() =>
+                submitLogout() && router.refresh() && setShowLogout(false)
+              }
               text='Keluar'
             />
           </div>

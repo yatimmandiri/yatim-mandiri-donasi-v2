@@ -3,6 +3,7 @@
 import { UseApp } from '@/hooks/useApp';
 import classNames from 'classnames';
 import Image from 'next/image';
+import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 
 export const NavigationMenuComponent = () => {
@@ -16,8 +17,8 @@ export const NavigationMenuComponent = () => {
       icons: '/assets/images/icon_home.svg',
       url: '/',
       handler: () => {
-        router.refresh();
         router.replace('/');
+        router.refresh();
       },
     },
     {
@@ -26,8 +27,8 @@ export const NavigationMenuComponent = () => {
       icons: '/assets/images/icon_donasi.svg',
       url: '/histori',
       handler: () => {
-        router.refresh();
         router.replace('/histori');
+        router.refresh();
       },
     },
     {
@@ -36,8 +37,8 @@ export const NavigationMenuComponent = () => {
       icons: '/assets/images/icon_calculator.svg',
       url: '/kalkulator',
       handler: () => {
-        router.refresh();
         router.replace('/kalkulator');
+        router.refresh();
       },
     },
     {
@@ -46,8 +47,8 @@ export const NavigationMenuComponent = () => {
       icons: '/assets/images/icon_literasi.svg',
       url: '/literasi',
       handler: () => {
-        router.refresh();
         router.replace('/literasi');
+        router.refresh();
       },
     },
     {
@@ -56,8 +57,8 @@ export const NavigationMenuComponent = () => {
       icons: '/assets/images/icon_profile.svg',
       url: '/account',
       handler: () => {
-        router.refresh();
         router.replace('/account');
+        router.refresh();
       },
     },
   ];
@@ -65,9 +66,8 @@ export const NavigationMenuComponent = () => {
   return (
     <ul className='flex justify-around items-center'>
       {menus.map((menu, i) => (
-        <li
+        <Link
           key={i}
-          onClick={menu.handler}
           href={menu.url}
           className={classNames(
             'flex flex-col items-center justify-center p-1 cursor-pointer',
@@ -93,7 +93,7 @@ export const NavigationMenuComponent = () => {
             />
           </div>
           <span>{menu.name}</span>
-        </li>
+        </Link>
       ))}
     </ul>
   );

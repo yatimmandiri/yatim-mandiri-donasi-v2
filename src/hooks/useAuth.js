@@ -181,13 +181,10 @@ export const AuthProvider = ({ children }) => {
       .post('/api/backend/logout')
       .then((response) => {
         console.log(response);
-
         mutate(null);
         notification({ message: 'Logout Successfully', type: 'success' });
-
         setTimeout(() => {
-          router.refresh();
-          router.replace('/?logout=true');
+          router.replace(`/?logout=true`);
         }, 2000);
       })
       .catch((err) =>

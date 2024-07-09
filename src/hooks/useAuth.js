@@ -2,7 +2,7 @@
 
 import { laravel } from '@/libs/axios';
 import { notification } from '@/utils/toast';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { createContext, useContext, useEffect, useState } from 'react';
 import useSWR from 'swr';
 
@@ -12,6 +12,7 @@ export const UseAuth = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }) => {
   const router = useRouter();
+  const pathName = usePathname();
   const searchParams = useSearchParams();
   const callBackUrl = searchParams.get('callbackUrl');
   const formDonasi = searchParams.get('formDonasi');
@@ -21,7 +22,11 @@ export const AuthProvider = ({ children }) => {
 
   const csrf = () => laravel.get(`/csrf-cookie`);
 
-  const { data: session, mutate } = useSWR('/api/user', () =>
+  const {
+    data: session,
+    mutate,
+    isLoading: isLoadingUser,
+  } = useSWR('/api/user', () =>
     laravel
       .get('/api/backend/user')
       .then((res) => res.data.data)
@@ -55,7 +60,6 @@ export const AuthProvider = ({ children }) => {
           : `/?masuk=true`;
 
         setTimeout(() => {
-          router.refresh();
           router.replace(urlCallback);
         }, 2000);
       })
@@ -195,12 +199,13 @@ export const AuthProvider = ({ children }) => {
       .finally(() => setIsLoading(false));
   };
 
-  useEffect(() => {}, [session]);
+  useEffect(() => {}, [session, pathName]);
 
   const contextValue = {
     session,
     csrf,
     isLoading,
+    isLoadingUser,
     login,
     logout,
     updateProfile,

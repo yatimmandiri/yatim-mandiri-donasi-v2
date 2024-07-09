@@ -22,7 +22,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang='en' className={inter.className}>
       <body>
-        <Suspense fallback={null}>
+        <Suspense fallback={<></>}>
           <AuthProvider>{children}</AuthProvider>
         </Suspense>
       </body>

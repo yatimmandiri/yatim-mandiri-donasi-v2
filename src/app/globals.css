@@ -33,6 +33,15 @@
   .wrapper {
     @apply w-full md:max-w-md mx-auto min-h-screen border shadow-md bg-white;
   }
+  .slider-swiper {
+    width: 80% !important;
+  }
+  .programterbaru-swiper {
+    width: 70% !important;
+  }
+  .icon_white {
+    filter: brightness(0) invert(1);
+  }
 }
 
 * {

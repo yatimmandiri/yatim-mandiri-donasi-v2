@@ -2,7 +2,7 @@
 
 import { laravel } from '@/libs/axios';
 import { notification } from '@/utils/toast';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { createContext, useContext, useEffect, useState } from 'react';
 import useSWR from 'swr';
 
@@ -12,6 +12,10 @@ export const UseAuth = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }) => {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const callBackUrl = searchParams.get('callbackUrl');
+  const formDonasi = searchParams.get('formDonasi');
+  const nominal = searchParams.get('nominal');
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -36,9 +40,23 @@ export const AuthProvider = ({ children }) => {
         mutate();
         notification({ message: 'Login Successfully', type: 'success' });
 
+        let paramsUrl = new URLSearchParams({ masuk: true });
+
+        if (formDonasi) {
+          paramsUrl.append('formDonasi', formDonasi);
+        }
+
+        if (nominal) {
+          paramsUrl.append('nominal', nominal);
+        }
+
+        let urlCallback = callBackUrl
+          ? `${callBackUrl}?${paramsUrl}`
+          : `/?masuk=true`;
+
         setTimeout(() => {
           router.refresh();
-          router.replace('/?masuk=true');
+          router.replace(urlCallback);
         }, 2000);
       })
       .catch((err) => {
@@ -158,12 +176,14 @@ export const AuthProvider = ({ children }) => {
     await laravel
       .post('/api/backend/logout')
       .then((response) => {
+        console.log(response);
+
         mutate(null);
         notification({ message: 'Logout Successfully', type: 'success' });
 
         setTimeout(() => {
-          router.refresh();
           router.replace('/?logout=true');
+          router.refresh();
         }, 2000);
       })
       .catch((err) =>

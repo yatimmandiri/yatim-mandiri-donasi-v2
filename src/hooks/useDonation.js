@@ -47,9 +47,7 @@ export const DonationProvider = ({ children }) => {
         })
   );
 
-  useEffect(() => {
-    statusSelected && mutateHistori();
-  }, [statusSelected]);
+  useEffect(() => {}, [statusSelected]);
 
   const selectDonation = (donation) => {
     setDonationSelected(donation);

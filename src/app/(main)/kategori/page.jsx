@@ -5,8 +5,15 @@ import { GetDataCategory } from '@/services/AppService';
 export default async function KategoriPage() {
   const [categories] = await Promise.all([GetDataCategory({ status: 'Y' })]);
 
+  const contextValue = {
+    headers: {
+      logo: true,
+      fixed: true,
+    },
+  };
+
   return (
-    <AppLayout>
+    <AppLayout context={contextValue}>
       <div className='block space-y-4 p-4'>
         <CategoriesComponent
           title='Semua Program Yatim Mandiri'

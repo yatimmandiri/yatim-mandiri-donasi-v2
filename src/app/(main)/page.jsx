@@ -19,8 +19,15 @@ export default async function HomePage() {
       GetDataNews({ page: 1 }),
     ]);
 
+  const contextValue = {
+    headers: {
+      logo: true,
+      fixed: true,
+    },
+  };
+
   return (
-    <AppLayout>
+    <AppLayout context={contextValue}>
       <SliderComponent data={sliders?.data} />
       <div className='block space-y-4 p-4'>
         <CategoriesComponent data={categories?.data.data} />

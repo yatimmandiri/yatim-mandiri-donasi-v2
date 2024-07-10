@@ -5,6 +5,15 @@ import { KalkulatorProvider } from '@/hooks/useKalkulator';
 import { AppLayout } from '@/layouts/AppLayout';
 import { GetDataHargaEmas } from '@/services/AppService';
 
+export const metadata = {
+  title: 'Kalkulator Zakat - Hitung Zakat Mal, Pertanian Anda Sekarang',
+  description:
+    'Bingung harus mengeluarkan zakat berapa dari total harta yang Anda miliki? Kini semakin mudah dengan fitur kalkulator zakat dari Yatim Mandiri. Yuk hitung dan bayarkan sekarang.',
+  alternates: {
+    canonical: '/kalkulator',
+  },
+};
+
 export default async function KalkulatorPage() {
   const hargaEmas = await GetDataHargaEmas();
 

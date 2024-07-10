@@ -2,6 +2,12 @@ import { CategoriesComponent } from '@/components/sections/CategoriesComponent';
 import { AppLayout } from '@/layouts/AppLayout';
 import { GetDataCategory } from '@/services/AppService';
 
+export const metadata = {
+  alternates: {
+    canonical: '/kategori',
+  },
+};
+
 export default async function KategoriPage() {
   const [categories] = await Promise.all([GetDataCategory({ status: 'Y' })]);
 

@@ -3,6 +3,12 @@ import { CampaignProvider } from '@/hooks/useCampaign';
 import { AppLayout } from '@/layouts/AppLayout';
 import { GetDataCampaign, GetDataCategory } from '@/services/AppService';
 
+export const metadata = {
+  alternates: {
+    canonical: '/program',
+  },
+};
+
 export default async function ProgramPage() {
   const [categories, programs] = await Promise.all([
     GetDataCategory({ status: 'Y' }),

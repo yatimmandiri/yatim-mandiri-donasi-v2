@@ -5,6 +5,14 @@ import {
 import { DonationProvider } from '@/hooks/useDonation';
 import { AppLayout } from '@/layouts/AppLayout';
 
+export const metadata = () => {
+  return {
+    alternates: {
+      canonical: '/histori',
+    },
+  };
+};
+
 export default function HistoriPage() {
   const contextValue = {
     headers: {

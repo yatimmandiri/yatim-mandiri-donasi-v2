@@ -2,6 +2,12 @@ import { PilihanLiterasiComponent } from '@/components/sections/PilihanLiterasiC
 import { AppLayout } from '@/layouts/AppLayout';
 import { GetDataBlog, GetDataNews } from '@/services/AppService';
 
+export const metadata = {
+  alternates: {
+    canonical: '/literasi',
+  },
+};
+
 export default async function LiterasiPage() {
   const [news, blogs] = await Promise.all([
     GetDataNews({ page: 1 }),

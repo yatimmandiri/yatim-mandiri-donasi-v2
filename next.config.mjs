@@ -1,6 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   distDir: 'build',
+  env: {
+    FACEBOOK_PIXEL_ID: '786709869258798',
+    FACEBOOK_PIXEL_ID2: '200810677896141',
+    TIKTOK_PIXEL_ID: 'CD6D7UJC77U8TNJJ2MEG',
+    GOOGLE_TAG_MANAGER_ID: 'GTM-W535XVCZ',
+    GOOGLE_ANALYTICS_ID: 'G-6HF2NF32NE',
+    hotjar: '3316015',
+  },
   images: {
     dangerouslyAllowSVG: true,
     remotePatterns: [

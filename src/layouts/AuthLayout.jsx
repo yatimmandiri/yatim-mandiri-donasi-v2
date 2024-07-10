@@ -1,4 +1,5 @@
 import { LogoComponent } from '@/components/sections/LogoComponent';
+import { PixelComponent } from '@/components/sections/PixelComponent';
 import { AppProvider } from '@/hooks/useApp';
 import { ChevronLeftIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
@@ -15,6 +16,7 @@ export const AuthLayout = ({ context = {}, children }) => {
         {children}
       </main>
       <ToastContainer />
+      <PixelComponent />
     </AppProvider>
   );
 };

@@ -45,6 +45,7 @@ export default async function HomePage() {
           dataTotal={programPopuler?.data.pagination.last_page}
           perPage={programPopuler?.data.pagination.per_page}
           recomendation={true}
+          loadingbottom={true}
           title='Program Rekomendasi'
         >
           <ProgramComponent />

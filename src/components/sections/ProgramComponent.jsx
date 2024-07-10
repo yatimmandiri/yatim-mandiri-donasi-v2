@@ -13,6 +13,7 @@ import {
 import Image from 'next/image';
 import Link from 'next/link';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import { SkeletonCardComponent } from '../partials/SkeletonComponent';
 import { CariDataComponent } from './CariDataComponent';
 import { NotFoundComponent } from './NotFoundComponent';
 
@@ -28,27 +29,63 @@ export const ProgramComponent = ({ categories = [] }) => {
     searching,
     empty,
     initialSearch,
+    loadingbottom,
+    pencarian,
   } = UseCampaign();
 
   return (
     <section className='flex flex-col space-y-4'>
       {searching && <ProgramSearchComponent categories={categories} />}
       {titleSection && <span className='title-section'>{titleSection}</span>}
-      {empty && searchValue != '' && data?.length == 0 && <NotFoundComponent />}
-      {initialSearch && searchValue == '' && data?.length == 0 && (
-        <CariDataComponent />
+      {empty && searchValue != '' && data?.length == 0 && !isLoading && (
+        <NotFoundComponent />
       )}
+      {initialSearch &&
+        searchValue == '' &&
+        data?.length == 0 &&
+        !isLoading && <CariDataComponent />}
+
       {infinite ? (
         <InfiniteScroll
           dataLength={data?.length}
           hasMore={hasMore}
           next={() => loadMore()}
-          loader={<p className='text-xs text-center'>Loading...</p>}
+          loader={Array.from({ length: 2 }).map((_, i) => (
+            <SkeletonCardComponent key={i} />
+          ))}
           className='grid grid-cols-1 gap-4'
         >
-          {data?.map((item, i) => (
-            <ProgramItemComponent key={i} item={item} />
-          ))}
+          {!pencarian &&
+            data.map((item, i) => (
+              <ProgramItemComponent
+                key={i}
+                item={item}
+                priority={i == 0 ? true : false}
+              />
+            ))}
+          {isLoading &&
+            Array.from({ length: 2 }).map((_, i) => (
+              <SkeletonCardComponent key={i} />
+            ))}
+          {/* {isLoading &&
+            !loadingbottom &&
+            Array.from({ length: 2 }).map((_, i) => (
+              <SkeletonCardComponent key={i} />
+            ))}
+          {isLoading && loadingbottom && (
+            <>
+              {data.map((item, i) => (
+                <ProgramItemComponent
+                  key={i}
+                  item={item}
+                  priority={i == 0 ? true : false}
+                />
+              ))}
+              {Array.from({ length: 2 }).map((_, i) => (
+                <SkeletonCardComponent key={i} />
+              ))}
+            </>
+          )} */}
         </InfiniteScroll>
       ) : (
         <div className='grid grid-cols-1 gap-4'>
@@ -59,9 +96,14 @@ export const ProgramComponent = ({ categories = [] }) => {
               priority={i == 0 ? true : false}
             />
           ))}
+          {isLoading &&
+            loadingbottom &&
+            Array.from({ length: 2 }).map((_, i) => (
+              <SkeletonCardComponent key={i} />
+            ))}
         </div>
       )}
-      {!infinite && hasMore && (
+      {!infinite && !isLoading && hasMore && (
         <Button
           onClick={() => loadMore()}
           className='text-baseColor-500 underline'

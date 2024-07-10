@@ -21,6 +21,7 @@ export const CampaignProvider = ({
   filtering = false,
   empty = true,
   initialSearch = false,
+  loadingbottom = false,
   children,
 }) => {
   const [titleSection, setTitleSection] = useState(title);
@@ -32,6 +33,7 @@ export const CampaignProvider = ({
   const [hasMore, setHasMore] = useState(false);
   // const [resultRelated, setResultRelated] = useState([]);
   const [searchValue, setSearchValue] = useState('');
+  const [pencarian, setPencarian] = useState(false);
   const [showFilter, setShowFilter] = useState(false);
   const [categoriesSelected, setCategoriesSelected] = useState([]);
 
@@ -77,6 +79,7 @@ export const CampaignProvider = ({
 
   const filterSearch = async (value) => {
     setIsLoading(true);
+    setPencarian(true);
     setSearchValue(value);
 
     const params = new URLSearchParams({
@@ -102,6 +105,7 @@ export const CampaignProvider = ({
       setTotalPage(response.data.pagination.last_page);
     }
 
+    setPencarian(false);
     setIsLoading(false);
   };
 
@@ -190,6 +194,8 @@ export const CampaignProvider = ({
     filtering,
     empty,
     initialSearch,
+    loadingbottom,
+    pencarian,
     showFilter,
     setShowFilter,
     searchValue,

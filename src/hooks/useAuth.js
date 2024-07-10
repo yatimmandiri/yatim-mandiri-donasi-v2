@@ -40,8 +40,6 @@ export const AuthProvider = ({ children }) => {
     await laravel
       .post('/api/backend/login', credentials)
       .then((response) => {
-        console.log(response.data);
-
         mutate();
         notification({ message: 'Login Successfully', type: 'success' });
 
@@ -60,7 +58,8 @@ export const AuthProvider = ({ children }) => {
           : `/?masuk=true`;
 
         setTimeout(() => {
-          router.replace(urlCallback);
+          router.push(urlCallback);
+          router.refresh();
         }, 2000);
       })
       .catch((err) => {
@@ -184,7 +183,8 @@ export const AuthProvider = ({ children }) => {
         mutate(null);
         notification({ message: 'Logout Successfully', type: 'success' });
         setTimeout(() => {
-          router.replace(`/?logout=true`);
+          router.push(`/?logout=true`);
+          router.refresh();
         }, 2000);
       })
       .catch((err) =>
@@ -196,7 +196,7 @@ export const AuthProvider = ({ children }) => {
       .finally(() => setIsLoading(false));
   };
 
-  useEffect(() => {}, [session, pathName]);
+  useEffect(() => {}, [session]);
 
   const contextValue = {
     session,

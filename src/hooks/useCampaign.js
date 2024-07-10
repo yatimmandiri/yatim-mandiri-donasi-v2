@@ -15,6 +15,10 @@ export const CampaignProvider = ({
   dataTotal = 0,
   recomendation = false,
   perPage = 3,
+  page = 1,
+  infinite = false,
+  searching = false,
+  filtering = false,
   children,
 }) => {
   const [resultRelated, setResultRelated] = useState([]);
@@ -28,19 +32,6 @@ export const CampaignProvider = ({
   const [titleSection, setTitleSection] = useState(title);
   const [showFilter, setShowFilter] = useState(false);
   const [categoriesSelected, setCategoriesSelected] = useState([]);
-
-  const { data: related, mutate: mutateRelated } = useSWR(
-    '/api/v1/campaigns/related',
-    () =>
-      laravel
-        .get('/api/backend/v1/campaigns', {
-          params: { status: 'Y', per_page: 3 },
-        })
-        .then((res) => setResultRelated(res.data.data.data))
-        .catch((error) => {
-          if (error.response.status !== 409) throw error;
-        })
-  );
 
   const loadMore = async () => {
     setIsLoading(true);
@@ -82,17 +73,129 @@ export const CampaignProvider = ({
     setIsLoading(false);
   };
 
+  const filterSearch = async (value) => {
+    setIsLoading(true);
+    setSearchValue(value);
+
+    const params = new URLSearchParams({
+      status: 'Y',
+      per_page: perPage,
+    });
+
+    if (value != null || value != '') {
+      params.append('search', value);
+      params.append('page', currentFilteredPage);
+
+      setCurrentPage(1);
+      setCurrentFilteredPage(1);
+    }
+
+    const response = await GetDataCampaign(params);
+
+    setResult(response.data.data);
+    setTotalPage(response.data.pagination.last_page);
+    setIsLoading(false);
+  };
+
+  const selectCategories = (value) => {
+    if (!categoriesSelected.some((item) => item.name == value.name)) {
+      setCategoriesSelected([
+        ...categoriesSelected,
+        { id: value.id, name: value.name },
+      ]);
+    } else {
+      const result = categoriesSelected.filter((item) => {
+        return value != item.name;
+      });
+      setCategoriesSelected(result);
+    }
+  };
+
+  const resetAll = () => {
+    setCategoriesSelected([]);
+    searchByCategories([]);
+  };
+
+  const filter = () => {
+    setSearchValue('');
+    setShowFilter(false);
+    searchByCategories(categoriesSelected);
+  };
+
+  const searchByCategories = async (value) => {
+    setIsLoading(true);
+
+    const params = new URLSearchParams({ status: 'Y', per_page: perPage });
+
+    const filter = value.map((item) => {
+      return item.id;
+    });
+
+    if (value.length > 0) {
+      params.append('filterByCategoriesId', filter.toString());
+    }
+
+    const response = await GetDataCampaign(params);
+
+    setResult(response.data.data);
+    setTotalPage(response.data.pagination.last_page);
+    setIsLoading(false);
+  };
+
+  const resetSelected = () => {
+    setCategoriesSelected([]);
+  };
+
+  const removeSelected = (value) => {
+    const result = categoriesSelected.filter((item) => {
+      return value != item.name;
+    });
+
+    setCategoriesSelected(result);
+    searchByCategories(result);
+  };
+
+  const { data: related, mutate: mutateRelated } = useSWR(
+    '/api/v1/campaigns/related',
+    () =>
+      laravel
+        .get('/api/backend/v1/campaigns', {
+          params: { status: 'Y', per_page: 3 },
+        })
+        .then((res) => setResultRelated(res.data.data.data))
+        .catch((error) => {
+          if (error.response.status !== 409) throw error;
+        })
+  );
+
   useEffect(() => {
     setHasMore(currentPage < totalPage ? true : false);
   }, [currentPage, totalPage]);
 
   const contextValue = {
-    resultRelated,
     result,
     totalPage,
     isLoading,
     hasMore,
+    infinite,
+    searching,
+    filtering,
+    showFilter,
+    setShowFilter,
+    searchValue,
+    setSearchValue,
+    categoriesSelected,
+    setCategoriesSelected,
+    titleSection,
+    setTitleSection,
+    selectCategories,
+    filterSearch,
+    filter,
     loadMore,
+    selectCategories,
+    resetSelected,
+    removeSelected,
+    resetAll,
   };
 
   return (

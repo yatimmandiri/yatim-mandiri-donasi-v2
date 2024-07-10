@@ -7,9 +7,11 @@ export default async function KategoriPage() {
 
   const contextValue = {
     headers: {
-      logo: true,
+      backButton: true,
       fixed: true,
+      title: 'Semua Kategori',
     },
+    pages: true,
   };
 
   return (

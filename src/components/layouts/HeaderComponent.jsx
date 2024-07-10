@@ -24,8 +24,8 @@ export const HeaderComponent = () => {
     >
       <nav
         className={classNames(
-          'px-4 py-1 shadow',
-          headers?.title ? 'bg-white' : '',
+          'px-4 shadow',
+          headers?.title ? 'bg-white py-4' : '',
           headers?.logo ? 'bg-white' : ''
         )}
       >

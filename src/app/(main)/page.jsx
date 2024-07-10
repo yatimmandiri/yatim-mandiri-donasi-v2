@@ -3,7 +3,7 @@ import { CategoriesComponent } from '@/components/sections/CategoriesComponent';
 import { CekProgramLainnyaComponent } from '@/components/sections/CekProgramLainnyaComponent';
 import { MajalahComponent } from '@/components/sections/MajalahComponent';
 import { PilihanProgramComponent } from '@/components/sections/PilihanProgramComponent';
-import { RecomendationProgramComponent } from '@/components/sections/RecomendationProgramComponent';
+import { ProgramComponent } from '@/components/sections/ProgramComponent';
 import { SliderComponent } from '@/components/sections/SliderComponent';
 import { TunaikanZakatComponent } from '@/components/sections/TunaikanZakatComponent';
 import { CampaignProvider } from '@/hooks/useCampaign';
@@ -45,7 +45,7 @@ export default async function HomePage() {
           recomendation={true}
           title='Program Rekomendasi'
         >
-          <RecomendationProgramComponent title='Rekomendasi Program' />
+          <ProgramComponent />
         </CampaignProvider>
         <TunaikanZakatComponent />
         <PilihanProgramComponent data={programPilihan?.data} />

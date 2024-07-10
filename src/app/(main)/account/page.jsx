@@ -5,6 +5,14 @@ import {
 } from '@/components/sections/BoxAccountComponent';
 import { AppLayout } from '@/layouts/AppLayout';
 
+export const metadata = () => {
+  return {
+    alternates: {
+      canonical: '/account',
+    },
+  };
+};
+
 export default function AccountPage() {
   const contextValue = {
     headers: {

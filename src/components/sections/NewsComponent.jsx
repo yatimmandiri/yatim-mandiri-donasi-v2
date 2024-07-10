@@ -22,7 +22,7 @@ export const NewsComponent = () => {
   } = UseNews();
 
   return (
-    <div className='flex flex-col space-y-4'>
+    <section className='flex flex-col space-y-4'>
       <InputTextComponent
         type='search'
         placeholder='Pencarian...'
@@ -56,7 +56,7 @@ export const NewsComponent = () => {
           )
         )}
       </InfiniteScroll>
-    </div>
+    </section>
   );
 };
 

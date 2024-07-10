@@ -8,7 +8,7 @@ export const DisclaimerComponent = () => {
   const { currentHargaEmas, nishabPerbulan, nishabPertahun } = UseKalkulator();
 
   return (
-    <div className='flex flex-col space-y-2'>
+    <section className='flex flex-col space-y-2'>
       <span className='text-sm font-semibold'>Disclaimer !!</span>
       <ul className='list-disc space-y-0.5 flex flex-col px-4'>
         <li className='list-item'>
@@ -46,6 +46,6 @@ export const DisclaimerComponent = () => {
           from harga-emas.org
         </span>
       </div>
-    </div>
+    </section>
   );
 };

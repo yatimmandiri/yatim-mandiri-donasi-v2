@@ -1,8 +1,10 @@
 import { BeritaPenyaluranComponent } from '@/components/sections/BeritaPenyaluranComponent';
 import { CategoriesComponent } from '@/components/sections/CategoriesComponent';
 import { CekProgramLainnyaComponent } from '@/components/sections/CekProgramLainnyaComponent';
+import { MajalahComponent } from '@/components/sections/MajalahComponent';
 import { PilihanProgramComponent } from '@/components/sections/PilihanProgramComponent';
 import { SliderComponent } from '@/components/sections/SliderComponent';
+import { TunaikanZakatComponent } from '@/components/sections/TunaikanZakatComponent';
 import { AppLayout } from '@/layouts/AppLayout';
 import {
   GetDataCampaign,
@@ -33,6 +35,8 @@ export default async function HomePage() {
       <SliderComponent data={sliders?.data} />
       <div className='block space-y-4 p-4'>
         <CategoriesComponent data={categories?.data.data} />
+        <MajalahComponent />
+        <TunaikanZakatComponent />
         <PilihanProgramComponent data={programPopuler?.data.data} />
       </div>
       <CekProgramLainnyaComponent />

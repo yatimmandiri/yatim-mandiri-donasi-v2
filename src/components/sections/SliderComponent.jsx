@@ -6,7 +6,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 export const SliderComponent = ({ data = [] }) => {
   return (
-    <div className='block'>
+    <section className='block'>
       <Swiper
         modules={[Autoplay, Pagination]}
         autoplay={{ delay: 2500 }}
@@ -22,7 +22,7 @@ export const SliderComponent = ({ data = [] }) => {
           </SwiperSlide>
         ))}
       </Swiper>
-    </div>
+    </section>
   );
 };
 

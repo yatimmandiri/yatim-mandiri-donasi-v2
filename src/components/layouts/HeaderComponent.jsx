@@ -36,6 +36,7 @@ export const HeaderComponent = () => {
                 headers?.fixed ? ArrowLeftIcon : ArrowLeftCircleIcon,
                 {
                   className: classNames(
+                    'cursor-pointer',
                     headers?.fixed ? 'w-5 h-5' : 'w-7 h-7',
                     headers?.fixed ? '' : 'text-white bg-gray-400 rounded-full'
                   ),

@@ -15,21 +15,23 @@ export const CampaignProvider = ({
   dataTotal = 0,
   recomendation = false,
   perPage = 3,
-  page = 1,
+  // page = 1,
   infinite = false,
   searching = false,
   filtering = false,
+  empty = true,
+  initialSearch = false,
   children,
 }) => {
-  const [resultRelated, setResultRelated] = useState([]);
+  const [titleSection, setTitleSection] = useState(title);
   const [result, setResult] = useState(data);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [currentFilteredPage, setCurrentFilteredPage] = useState(1);
+  const [totalPage, setTotalPage] = useState(dataTotal);
   const [isLoading, setIsLoading] = useState(false);
   const [hasMore, setHasMore] = useState(false);
-  const [currentFilteredPage, setCurrentFilteredPage] = useState(1);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPage, setTotalPage] = useState(dataTotal);
+  // const [resultRelated, setResultRelated] = useState([]);
   const [searchValue, setSearchValue] = useState('');
-  const [titleSection, setTitleSection] = useState(title);
   const [showFilter, setShowFilter] = useState(false);
   const [categoriesSelected, setCategoriesSelected] = useState([]);
 
@@ -92,8 +94,14 @@ export const CampaignProvider = ({
 
     const response = await GetDataCampaign(params);
 
-    setResult(response.data.data);
-    setTotalPage(response.data.pagination.last_page);
+    if (initialSearch && (value == '' || value == null)) {
+      setResult([]);
+      setTotalPage(1);
+    } else {
+      setResult(response.data.data);
+      setTotalPage(response.data.pagination.last_page);
+    }
+
     setIsLoading(false);
   };
 
@@ -180,6 +188,8 @@ export const CampaignProvider = ({
     infinite,
     searching,
     filtering,
+    empty,
+    initialSearch,
     showFilter,
     setShowFilter,
     searchValue,

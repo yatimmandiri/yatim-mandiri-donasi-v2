@@ -29,6 +29,8 @@ export default async function HomePage() {
     headers: {
       logo: true,
       fixed: true,
+      login: true,
+      searching: true,
     },
   };
 

@@ -13,6 +13,8 @@ import {
 import Image from 'next/image';
 import Link from 'next/link';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import { CariDataComponent } from './CariDataComponent';
+import { NotFoundComponent } from './NotFoundComponent';
 
 export const ProgramComponent = ({ categories = [] }) => {
   const {
@@ -24,13 +26,18 @@ export const ProgramComponent = ({ categories = [] }) => {
     hasMore,
     isLoading,
     searching,
-    categoriesSelected,
+    empty,
+    initialSearch,
   } = UseCampaign();
 
   return (
     <section className='flex flex-col space-y-4'>
       {searching && <ProgramSearchComponent categories={categories} />}
       {titleSection && <span className='title-section'>{titleSection}</span>}
+      {empty && searchValue != '' && data?.length == 0 && <NotFoundComponent />}
+      {initialSearch && searchValue == '' && data?.length == 0 && (
+        <CariDataComponent />
+      )}
       {infinite ? (
         <InfiniteScroll
           dataLength={data?.length}

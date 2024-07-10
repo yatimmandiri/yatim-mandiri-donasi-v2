@@ -94,6 +94,7 @@ export const HeaderSearchComponent = () => {
             empty={true}
             infinite={true}
             searching={true}
+            perPage={10}
           >
             <ProgramComponent />
           </CampaignProvider>

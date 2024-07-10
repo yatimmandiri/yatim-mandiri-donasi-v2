@@ -3,8 +3,10 @@ import { CategoriesComponent } from '@/components/sections/CategoriesComponent';
 import { CekProgramLainnyaComponent } from '@/components/sections/CekProgramLainnyaComponent';
 import { MajalahComponent } from '@/components/sections/MajalahComponent';
 import { PilihanProgramComponent } from '@/components/sections/PilihanProgramComponent';
+import { RecomendationProgramComponent } from '@/components/sections/RecomendationProgramComponent';
 import { SliderComponent } from '@/components/sections/SliderComponent';
 import { TunaikanZakatComponent } from '@/components/sections/TunaikanZakatComponent';
+import { CampaignProvider } from '@/hooks/useCampaign';
 import { AppLayout } from '@/layouts/AppLayout';
 import {
   GetDataCampaign,
@@ -36,8 +38,17 @@ export default async function HomePage() {
       <div className='block space-y-4 p-4'>
         <CategoriesComponent data={categories?.data.data} />
         <MajalahComponent />
+        <CampaignProvider
+          data={programPopuler?.data.data}
+          dataTotal={programPopuler?.data.pagination.last_page}
+          perPage={programPopuler?.data.pagination.per_page}
+          recomendation={true}
+          title='Program Rekomendasi'
+        >
+          <RecomendationProgramComponent title='Rekomendasi Program' />
+        </CampaignProvider>
         <TunaikanZakatComponent />
-        <PilihanProgramComponent data={programPopuler?.data.data} />
+        <PilihanProgramComponent data={programPilihan?.data} />
       </div>
       <CekProgramLainnyaComponent />
       <div className='block space-y-4 p-4'>

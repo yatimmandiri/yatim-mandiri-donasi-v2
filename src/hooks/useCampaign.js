@@ -22,6 +22,7 @@ export const CampaignProvider = ({
   empty = true,
   initialSearch = false,
   loadingbottom = false,
+  categoriesId = false,
   children,
 }) => {
   const [titleSection, setTitleSection] = useState(title);
@@ -47,6 +48,10 @@ export const CampaignProvider = ({
 
     if (recomendation) {
       params.append('recomendation', 'Y');
+    }
+
+    if (categoriesId) {
+      params.append('categories_id', categoriesId);
     }
 
     if (categoriesSelected.length > 0) {

@@ -26,12 +26,14 @@ export const HeaderComponent = () => {
     <header
       className={classNames(
         'w-full md:max-w-md mx-auto',
-        headers?.fixed ? 'sticky top-0 z-30' : 'absolute inset-x-0 top-0 z-30'
+        headers?.fixed
+          ? 'sticky top-0 z-30'
+          : 'absolute inset-x-0 top-0 z-30 px-1 py-5'
       )}
     >
       <nav
         className={classNames(
-          'px-4 shadow',
+          'px-4',
           headers?.title ? 'bg-white py-4' : '',
           headers?.logo ? 'bg-white' : ''
         )}

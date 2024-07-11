@@ -3,7 +3,7 @@ export const GetDataHargaEmas = async (params) => {
 
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_SITE_URL}/api/backend/hargaemas?${searchParams}`,
-    { cache: 'no-store' }
+    { next: { revalidate: 120 } }
   );
 
   const data = await response.json();
@@ -50,12 +50,25 @@ export const GetDataCampaign = async (params) => {
   return data;
 };
 
+export const GetDataFaqs = async (params) => {
+  const searchParams = new URLSearchParams(params);
+
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_SITE_URL}/api/backend/v1/faqs?${searchParams}`,
+    { cache: 'no-store' }
+  );
+
+  const data = await response.json();
+
+  return data;
+};
+
 export const GetDataNews = async (params) => {
   const searchParams = new URLSearchParams(params);
 
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_SITE_URL}/api/news/posts?${searchParams}`,
-    { cache: 'no-store' }
+    { next: { revalidate: 120 } }
   );
 
   const data = await response.json();
@@ -71,7 +84,7 @@ export const GetDataBlog = async (params) => {
 
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_SITE_URL}/api/blog/posts?${searchParams}`,
-    { cache: 'no-store' }
+    { next: { revalidate: 120 } }
   );
 
   const data = await response.json();

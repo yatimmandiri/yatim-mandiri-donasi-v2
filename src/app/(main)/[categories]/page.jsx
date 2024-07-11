@@ -107,6 +107,22 @@ export default async function DetailCategoriesPage({ params }) {
       backButton: true,
     },
     navigation: true,
+    gtm: {
+      viewItemList: {
+        ecommerce: {
+          items: campaigns.data.data.map((item) => {
+            return {
+              item_id: item.id,
+              item_name: item.campaign_name,
+              currency: 'IDR',
+              item_category: item.relationship.categories.categories_name,
+              item_list_id: 'related_campaign',
+              item_list_name: 'Related Campaigns',
+            };
+          }),
+        },
+      },
+    },
   };
 
   return (

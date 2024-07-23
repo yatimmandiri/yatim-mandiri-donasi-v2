@@ -49,6 +49,17 @@ export const FormZakatMaalComponent = () => {
       className='flex flex-col space-y-4'
     >
       <Legend className='text-sm font-semibold'>Zakat Maal</Legend>
+      {/* <CurrencyInput
+        locale='id-ID'
+        currency='IDR'
+        hideSymbol={true}
+        onChangeValue={(event, originalValue, maskedValue) => {
+          console.log(event, originalValue, maskedValue);
+        }}
+        InputElement={
+          
+        }
+      /> */}
       <InputTextComponent
         label={'Nilai Deposito/Giro/Tabungan'}
         placeholder={'Nilai Deposito/Giro/Tabungan'}
@@ -252,8 +263,8 @@ export const FormZakatEmasComponent = () => {
 
   const onChangeValue = (event) => {
     const { name, value } = event;
-    event.value = formatRupiah(onlyNumber(value));
-    setValue(name, formatRupiah(onlyNumber(value)));
+    event.value = onlyNumber(value);
+    setValue(name, onlyNumber(value));
   };
 
   const submitForm = (data) => {

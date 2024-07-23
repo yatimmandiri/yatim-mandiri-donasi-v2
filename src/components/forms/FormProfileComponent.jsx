@@ -1,11 +1,11 @@
+import { ButtonComponent } from '@/components/partials/ButtonComponent';
+import { InputTextComponent } from '@/components/partials/InputComponent';
 import { UseAuth } from '@/hooks/useAuth';
 import { Fieldset } from '@headlessui/react';
 import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { ButtonComponent } from '../partials/ButtonComponent';
-import { InputTextComponent } from '../partials/InputComponent';
 
 export const FormProfileComponent = ({ setShowProfile = () => {} }) => {
   const [showPassword, setShowPassword] = useState(false);

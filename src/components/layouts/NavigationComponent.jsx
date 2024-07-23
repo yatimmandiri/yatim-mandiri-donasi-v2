@@ -1,10 +1,18 @@
 'use client';
 
+import {
+  ButtonComponent,
+  ButtonIconComponent,
+} from '@/components/partials/ButtonComponent';
 import { UseApp } from '@/hooks/useApp';
+import { ShareIcon } from '@heroicons/react/24/outline';
 import classNames from 'classnames';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
+import { useState } from 'react';
+import { FaFacebook, FaTwitter, FaWhatsapp } from 'react-icons/fa';
+import { AlertComponent } from '../partials/DialogComponent';
 
 export const NavigationMenuComponent = () => {
   const router = useRouter();
@@ -99,14 +107,86 @@ export const NavigationMenuComponent = () => {
   );
 };
 
+export const NavigationPaymentComponent = () => {
+  const [showShare, setShowShare] = useState(false);
+  const pathName = usePathname();
+
+  const handleShare = (platform) => {
+    const shareUrl = `${process.env.NEXT_PUBLIC_SITE_URL}${pathName}`;
+
+    let shareLink = '';
+    switch (platform) {
+      case 'facebook':
+        shareLink = `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`;
+        break;
+      case 'twitter':
+        shareLink = `https://twitter.com/intent/tweet?url=${shareUrl}`;
+        break;
+      default:
+        shareLink = `https://api.whatsapp.com/send?text=${shareUrl}`;
+        break;
+    }
+    window.open(shareLink, '_blank');
+  };
+
+  return (
+    <ul className='flex items-center space-x-3 p-4'>
+      <ButtonIconComponent
+        onClick={() => setShowShare(true)}
+        icons={ShareIcon}
+        variant='outline'
+      />
+      <ButtonComponent
+        text='Donasi Sekarang'
+        form='formDonasi'
+        type='submit'
+        fullWidth={true}
+        pill={true}
+      />
+
+      <AlertComponent
+        modalTitle={'Bagikan Ke'}
+        withHeader={true}
+        isOpen={showShare}
+        handleOnChange={() => setShowShare(false)}
+      >
+        <div className='flex items-center justify-center space-x-3 h-32'>
+          <ButtonIconComponent
+            onClick={() => handleShare('whatsapp')}
+            icons={FaWhatsapp}
+            color='success'
+            iconsClass='w-10 h-10'
+          />
+          <ButtonIconComponent
+            onClick={() => handleShare('facebook')}
+            icons={FaFacebook}
+            color='primary'
+            iconsClass='w-10 h-10'
+          />
+          <ButtonIconComponent
+            onClick={() => handleShare('twitter')}
+            icons={FaTwitter}
+            color='info'
+            iconsClass='w-10 h-10'
+          />
+        </div>
+      </AlertComponent>
+    </ul>
+  );
+};
+
 export const NavigationComponent = () => {
-  const { pages } = UseApp();
+  const { pages, navigation, navigationCampaign } = UseApp();
 
   return (
     !pages && (
       <aside className='sticky bottom-0 z-30'>
         <nav className='w-full md:max-w-md mx-auto border-t border-x shadow-lg bg-white'>
-          <NavigationMenuComponent />
+          {navigation && navigationCampaign ? (
+            <NavigationPaymentComponent />
+          ) : (
+            <NavigationMenuComponent />
+          )}
         </nav>
       </aside>
     )

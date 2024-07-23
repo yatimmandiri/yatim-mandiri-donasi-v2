@@ -61,7 +61,7 @@ export const HeaderComponent = () => {
           </li>
           {headers?.searching && <HeaderSearchComponent />}
           {headers?.login && !session && (
-            <Link href={'/auth/login'} className='text-sm'>
+            <Link href={'/auth/login'} className='text-xs font-semibold'>
               Masuk
             </Link>
           )}

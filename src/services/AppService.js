@@ -63,6 +63,58 @@ export const GetDataFaqs = async (params) => {
   return data;
 };
 
+export const GetDataRekenings = async (params) => {
+  const searchParams = new URLSearchParams(params);
+
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_SITE_URL}/api/backend/v1/rekenings?${searchParams}`,
+    { cache: 'no-store' }
+  );
+
+  const data = await response.json();
+
+  return data;
+};
+
+export const GetDataTestimonials = async (params) => {
+  const searchParams = new URLSearchParams(params);
+
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_SITE_URL}/api/backend/v1/testimonials?${searchParams}`,
+    { cache: 'no-store' }
+  );
+
+  const data = await response.json();
+
+  return data;
+};
+
+export const GetDataDonation = async (params) => {
+  const searchParams = new URLSearchParams(params);
+
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_SITE_URL}/api/backend/v1/donations?${searchParams}`,
+    { cache: 'no-store' }
+  );
+
+  const data = await response.json();
+
+  return data;
+};
+
+export const PostDataDonation = async (params) => {
+  const searchParams = new URLSearchParams(params);
+
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_SITE_URL}/api/backend/v1/donations?${searchParams}`,
+    { method: 'POST', body: searchParams, credentials: 'include' }
+  );
+
+  const data = await response.json();
+
+  return data;
+};
+
 export const GetDataNews = async (params) => {
   const searchParams = new URLSearchParams(params);
 

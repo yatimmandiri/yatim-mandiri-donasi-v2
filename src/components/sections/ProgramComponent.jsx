@@ -3,6 +3,9 @@
 import { ButtonComponent } from '@/components/partials/ButtonComponent';
 import { ActionSheetComponent } from '@/components/partials/DialogComponent';
 import { InputTextComponent } from '@/components/partials/InputComponent';
+import { SkeletonCardComponent } from '@/components/partials/SkeletonComponent';
+import { CariDataComponent } from '@/components/sections/CariDataComponent';
+import { NotFoundComponent } from '@/components/sections/NotFoundComponent';
 import { UseCampaign } from '@/hooks/useCampaign';
 import { formatRupiah } from '@/utils/formatNumber';
 import { Button } from '@headlessui/react';
@@ -13,9 +16,6 @@ import {
 import Image from 'next/image';
 import Link from 'next/link';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { SkeletonCardComponent } from '../partials/SkeletonComponent';
-import { CariDataComponent } from './CariDataComponent';
-import { NotFoundComponent } from './NotFoundComponent';
 
 export const ProgramComponent = ({ categories = [] }) => {
   const {
@@ -67,25 +67,6 @@ export const ProgramComponent = ({ categories = [] }) => {
             Array.from({ length: 2 }).map((_, i) => (
               <SkeletonCardComponent key={i} />
             ))}
-          {/* {isLoading &&
-            !loadingbottom &&
-            Array.from({ length: 2 }).map((_, i) => (
-              <SkeletonCardComponent key={i} />
-            ))}
-          {isLoading && loadingbottom && (
-            <>
-              {data.map((item, i) => (
-                <ProgramItemComponent
-                  key={i}
-                  item={item}
-                  priority={i == 0 ? true : false}
-                />
-              ))}
-              {Array.from({ length: 2 }).map((_, i) => (
-                <SkeletonCardComponent key={i} />
-              ))}
-            </>
-          )} */}
         </InfiniteScroll>
       ) : (
         <div className='grid grid-cols-1 gap-4'>
@@ -112,44 +93,6 @@ export const ProgramComponent = ({ categories = [] }) => {
         </Button>
       )}
     </section>
-  );
-};
-
-export const ProgramFilterComponent = ({ categories = [] }) => {
-  const {
-    showFilter,
-    setShowFilter,
-    resetSelected,
-    selectCategories,
-    categoriesSelected,
-    filter,
-    removeSelected,
-    resetAll,
-  } = UseCampaign();
-
-  return (
-    <>
-      {/* {categoriesSelected?.length > 0 && (
-        <div className='flex justify-between items-center'>
-          <span className='title-section'>Filter By Categories</span>
-          <span
-            onClick={() => resetAll()}
-            className='text-red-500 font-semibold'
-          >
-            Reset
-          </span>
-        </div>
-      )}
-      <div className='flex'>
-        {categoriesSelected.map((item, i) => (
-          <ButtonComponent
-            onClick={() => removeSelected(item.name)}
-            key={i}
-            text={item.name}
-          />
-        ))}
-      </div> */}
-    </>
   );
 };
 
@@ -268,7 +211,6 @@ export const ProgramSearchComponent = ({ categories = [] }) => {
 export const ProgramItemComponent = ({ item = [], priority = false }) => {
   return (
     <Link
-      target='_blank'
       href={'/' + item.relationship.categories.slug + '/' + item.slug}
       className='flex flex-row space-x-3 items-start justify-center rounded-lg overflow-hidden border shadow-md p-2'
     >
@@ -281,7 +223,7 @@ export const ProgramItemComponent = ({ item = [], priority = false }) => {
           }
           alt={item?.name}
           fill={true}
-          priority={true}
+          priority={priority}
           sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
           className='object-center object-cover rounded'
         />

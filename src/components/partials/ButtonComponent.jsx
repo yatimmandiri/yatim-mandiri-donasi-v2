@@ -80,3 +80,32 @@ export const ButtonLinkComponent = ({
     </Button>
   );
 };
+
+export const ButtonIconComponent = ({
+  type = 'button',
+  className = '',
+  color = 'default',
+  variant = 'solid',
+  icons = false,
+  isLoading = false,
+  iconsClass = 'w-4 h-4',
+  pill = true,
+  ...props
+}) => {
+  return (
+    <Button
+      type={type}
+      disabled={isLoading}
+      className={classNames(
+        'p-2  border',
+        'disabled:cursor-not-allowed',
+        colors[variant][color],
+        pill ? 'rounded-full' : 'rounded-lg',
+        className
+      )}
+      {...props}
+    >
+      {icons && createElement(icons, { className: iconsClass })}
+    </Button>
+  );
+};

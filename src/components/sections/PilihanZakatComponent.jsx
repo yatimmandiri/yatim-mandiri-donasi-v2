@@ -6,6 +6,7 @@ import {
   FormZakatPerdaganganComponent,
   FormZakatProfesiComponent,
 } from '@/components/forms/FormZakatComponent';
+import { ButtonComponent } from '@/components/partials/ButtonComponent';
 import { AlertComponent } from '@/components/partials/DialogComponent';
 import { UseKalkulator } from '@/hooks/useKalkulator';
 import { formatRupiah } from '@/utils/formatNumber';
@@ -20,7 +21,6 @@ import {
 import classNames from 'classnames';
 import Image from 'next/image';
 import { useState } from 'react';
-import { ButtonComponent } from '../partials/ButtonComponent';
 
 export const PilihanZakatComponent = () => {
   const tabsList = [

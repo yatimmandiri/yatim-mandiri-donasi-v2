@@ -168,7 +168,7 @@ export const ActionSheetComponent = ({
             className='w-full md:max-w-md mx-auto h-[30%] rounded-t-lg scrollbar-hide align-middle transition-all transform bg-white'
           >
             {withHeader && (
-              <DialogTitle className='sticky w-full rounded-t-2xl top-0 z-30 rounded-lg font-semibold flex items-center justify-between space-x-3 text-sm p-2 bg-white'>
+              <DialogTitle className='sticky w-full rounded-t-2xl top-0 z-30 rounded-lg font-semibold flex items-center justify-between space-x-3 text-sm p-4 bg-white'>
                 <span className='text-sm'>{modalTitle}</span>
                 <XMarkIcon
                   className='w-5 h-5 cursor-pointer'

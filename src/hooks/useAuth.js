@@ -17,6 +17,7 @@ export const AuthProvider = ({ children }) => {
   const callBackUrl = searchParams.get('callbackUrl');
   const formDonasi = searchParams.get('formDonasi');
   const nominal = searchParams.get('nominal');
+  const quantity = searchParams.get('quantity');
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -51,6 +52,10 @@ export const AuthProvider = ({ children }) => {
 
         if (nominal) {
           paramsUrl.append('nominal', nominal);
+        }
+
+        if (quantity) {
+          paramsUrl.append('quantity', quantity);
         }
 
         let urlCallback = callBackUrl
@@ -183,8 +188,8 @@ export const AuthProvider = ({ children }) => {
         mutate(null);
         notification({ message: 'Logout Successfully', type: 'success' });
         setTimeout(() => {
-          router.push(`/?logout=true`);
           router.refresh();
+          router.push(`/?logout=true`);
         }, 2000);
       })
       .catch((err) =>

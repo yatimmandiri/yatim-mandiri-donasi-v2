@@ -5,6 +5,8 @@ import {
   Input,
   Label,
   Select,
+  Switch,
+  Textarea,
 } from '@headlessui/react';
 import { InformationCircleIcon } from '@heroicons/react/24/outline';
 import classNames from 'classnames';
@@ -89,6 +91,61 @@ export const InputTextComponent = ({
   );
 };
 
+export const InputTextAreaComponent = ({
+  className = '',
+  center = false,
+  pill = false,
+  label = false,
+  errors = false,
+  helperText = false,
+  register = false,
+  ...props
+}) => {
+  return (
+    <Field className='flex flex-col space-y-2.5'>
+      {label && <Label className='text-sm font-medium'>{label}</Label>}
+      <div className='relative'>
+        <Textarea
+          className={classNames(
+            'w-full shadow appearance-none text-xs border p-2.5 leading-tight ',
+            'focus:outline-none focus:shadow-outline',
+            'placeholder:text-xs',
+            'disabled:cursor-not-allowed',
+            'read-only:cursor-pointer',
+            'border-gray-300 bg-gray-50 text-gray-700',
+            center && 'text-center',
+            pill ? 'rounded-full' : 'rounded-lg',
+            errors
+              ? 'border-red-500 focus:border-red-500 focus:ring-red-500'
+              : 'focus:ring-blue-500 focus:border-blue-500',
+            className
+          )}
+          rows={8}
+          cols={30}
+          {...register}
+          {...props}
+        ></Textarea>
+      </div>
+      {helperText && (
+        <Description
+          className={classNames(
+            'flex items-center space-x-2 text-xs',
+            errors && 'text-red-500'
+          )}
+        >
+          <InformationCircleIcon
+            className={classNames(
+              'w-4 h-4',
+              errors ? 'text-red-500' : 'text-yellow-500'
+            )}
+          />
+          <span>{helperText}</span>
+        </Description>
+      )}
+    </Field>
+  );
+};
+
 export const InputSelectComponent = ({
   data = [
     { id: 1, name: 'Active' },
@@ -149,5 +206,28 @@ export const InputSelectComponent = ({
         </Description>
       )}
     </Field>
+  );
+};
+
+export const InputSwitchComponent = ({
+  className = '',
+  enabled = false,
+  setEnabled = () => {},
+  register = false,
+  ...props
+}) => {
+  return (
+    <Switch
+      checked={enabled}
+      onChange={setEnabled}
+      className={classNames(
+        'group inline-flex h-6 w-16 items-center rounded-full bg-gray-200 transition data-[checked]:bg-blue-600',
+        className
+      )}
+      {...register}
+      {...props}
+    >
+      <span className='size-4 translate-x-1 rounded-full bg-white transition group-data-[checked]:translate-x-6' />
+    </Switch>
   );
 };

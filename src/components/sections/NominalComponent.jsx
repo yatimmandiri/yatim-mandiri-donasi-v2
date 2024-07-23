@@ -100,7 +100,7 @@ export const PilihanPaketComponent = () => {
   useEffect(() => {
     setCurrentNominal(formatRupiah(campaigns.nominal.toString()));
     setCurrentQuantity(1);
-  }, [tabActive, campaigns]);
+  }, [tabActive, campaigns, setCurrentNominal, setCurrentQuantity]);
 
   return (
     <TabGroup

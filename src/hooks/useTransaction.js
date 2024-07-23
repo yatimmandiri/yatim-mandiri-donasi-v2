@@ -117,7 +117,15 @@ export const TransactionProvider = ({
 
     setShowFormDonasi(formDonasi && formDonasi);
     setReferals(referal ? referal : '');
-  }, [campaigns, nominal, currentQuantity, formDonasi, referal]);
+  }, [
+    campaigns,
+    nominal,
+    currentQuantity,
+    formDonasi,
+    referal,
+    quantity,
+    rekeningPopuler,
+  ]);
 
   const contextValue = {
     campaigns,

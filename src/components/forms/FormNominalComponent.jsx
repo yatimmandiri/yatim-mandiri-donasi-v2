@@ -57,7 +57,7 @@ export const FormNominalComponent = ({
     setTotalNominal(
       currentQuantity * currentNominal.toString().replaceAll('.', '')
     );
-  }, [campaigns, currentNominal, currentQuantity, setValue]);
+  }, [campaigns, currentNominal, currentQuantity, setValue, setTotalNominal]);
 
   return (
     <Fieldset

@@ -113,6 +113,8 @@ export const FormDonasiComponent = () => {
     currentQuantity,
     session,
     shohibul,
+    referals,
+    currentRekening,
     setValue,
   ]);
 

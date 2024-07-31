@@ -37,6 +37,7 @@ export const TransactionProvider = ({
 
   const nominalButtonSelected = (value) => {
     setCurrentNominal(formatRupiah(value));
+    setShowFormDonasi(true);
   };
 
   const changeMetode = (event) => {

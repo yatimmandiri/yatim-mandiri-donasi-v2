@@ -70,8 +70,8 @@ export const FormNominalComponent = ({
         <InputTextComponent
           type='text'
           placeholder='Nominal'
-          errors={errors.nominal && errors.nominal.message}
-          helperText={errors.nominal && errors.nominal.message}
+          errors={errors.nominal_donasi && errors.nominal_donasi.message}
+          helperText={errors.nominal_donasi && errors.nominal_donasi.message}
           onChange={(e) => onChangeValue(e.target)}
           register={{
             ...register('nominal_donasi', {

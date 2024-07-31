@@ -78,15 +78,13 @@ export const AuthProvider = ({ children }) => {
       .finally(() => setIsLoading(false));
   };
 
-  const register = async ({ ...props }) => {
+  const register = async (credentials) => {
     setIsLoading(true);
     await csrf();
 
     await laravel
-      .post('/api/backend/register', props)
+      .post('/api/backend/register', credentials)
       .then((response) => {
-        console.log(response.data);
-
         mutate();
         notification({ message: response.data.message, type: 'success' });
 
@@ -104,12 +102,12 @@ export const AuthProvider = ({ children }) => {
       .finally(() => setIsLoading(false));
   };
 
-  const forgotPassword = async ({ ...props }) => {
+  const forgotPassword = async (credentials) => {
     setIsLoading(true);
     await csrf();
 
     await laravel
-      .post('/api/backend/forgot-password', props)
+      .post('/api/backend/forgot-password', credentials)
       .then((response) => {
         mutate();
         notification({
@@ -130,12 +128,12 @@ export const AuthProvider = ({ children }) => {
       .finally(() => setIsLoading(false));
   };
 
-  const resetPassword = async ({ ...props }) => {
+  const resetPassword = async (credentials) => {
     setIsLoading(true);
     await csrf();
 
     await laravel
-      .post('/api/backend/reset-password', props)
+      .post('/api/backend/reset-password', credentials)
       .then(() => {
         mutate();
         notification({
@@ -156,12 +154,12 @@ export const AuthProvider = ({ children }) => {
       .finally(() => setIsLoading(false));
   };
 
-  const updateProfile = async ({ ...props }) => {
+  const updateProfile = async (credentials) => {
     setIsLoading(true);
     await csrf();
 
     await laravel
-      .post('/api/backend/profile', props)
+      .post('/api/backend/profile', credentials)
       .then((response) => {
         mutate();
         notification({
@@ -184,7 +182,6 @@ export const AuthProvider = ({ children }) => {
     await laravel
       .post('/api/backend/logout')
       .then((response) => {
-        console.log(response);
         mutate(null);
         notification({ message: 'Logout Successfully', type: 'success' });
         setTimeout(() => {

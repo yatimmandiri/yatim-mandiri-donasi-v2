@@ -28,6 +28,14 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'ui-avatars.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'api.midtrans.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'id.shp.ee',
+      },
     ],
   },
   async redirects() {

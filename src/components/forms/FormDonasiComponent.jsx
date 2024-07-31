@@ -8,9 +8,7 @@ import {
 } from '@/components/partials/InputComponent';
 import { UseAuth } from '@/hooks/useAuth';
 import { UseTransaction } from '@/hooks/useTransaction';
-import { PostDataDonation } from '@/services/AppService';
 import { onlyNumber } from '@/utils/formatNumber';
-import { notification } from '@/utils/toast';
 import { Description, Field, Fieldset, Label } from '@headlessui/react';
 import { InformationCircleIcon } from '@heroicons/react/24/outline';
 import classNames from 'classnames';
@@ -60,8 +58,6 @@ export const FormDonasiComponent = () => {
   };
 
   const submitForm = async (credentials) => {
-    setIsLoading(true);
-
     localStorage.setItem(
       'userData',
       JSON.stringify({
@@ -71,13 +67,7 @@ export const FormDonasiComponent = () => {
       })
     );
 
-    await PostDataDonation(credentials)
-      .then((response) => {
-        notification({ message: response.message, type: 'success' });
-
-        router.push(`/payments/${response.data.no_transaksi}`);
-      })
-      .finally(() => setIsLoading(false));
+    await postDonation(credentials);
   };
 
   useEffect(() => {

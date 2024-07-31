@@ -103,11 +103,9 @@ export const GetDataDonation = async (params) => {
 };
 
 export const PostDataDonation = async (params) => {
-  const searchParams = new URLSearchParams(params);
-
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_SITE_URL}/api/backend/v1/donations`,
-    { method: 'POST', body: searchParams, credentials: 'include' }
+    { method: 'POST', body: params, credentials: 'include' }
   );
 
   const data = await response.json();

@@ -60,30 +60,19 @@ export const TransactionProvider = ({
     }
   };
 
-  const postDonation = async ({ ...props }) => {
+  const postDonation = async (data) => {
     setIsLoading(true);
 
     await laravel
-      .post('/api/backend/v1/donations', props)
+      .post('/api/backend/v1/donations', data)
       .then((response) => {
-        console.log(response.data);
-
-        // mutate();
         notification({ message: response.data.message, type: 'success' });
-
         router.push(`/payments/${response.data.data.no_transaksi}`);
-        // setTimeout(() => {
-        //   router.refresh();
-        //   router.push('/?register=true');
-        // }, 2000);
       })
-      .catch(
-        (err) => console.log(err)
-        // notification({
-        //   message: err.response.data.message,
-        //   type: 'error',
-        // })
-      )
+      .catch((err) => {
+        console.log(err);
+        notification({ message: err.response.data.message, type: 'error' });
+      })
       .finally(() => setIsLoading(false));
   };
 

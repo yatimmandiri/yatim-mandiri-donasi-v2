@@ -88,7 +88,7 @@ export const TransactionProvider = ({
 
     if (campaigns) {
       setCurrentNominal(
-        campaigns.nominal > 0
+        campaigns.template == 'T2'
           ? formatRupiah(campaigns.nominal.toString())
           : nominal
           ? formatRupiah(nominal)

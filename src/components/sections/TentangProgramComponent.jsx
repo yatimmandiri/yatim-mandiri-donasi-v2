@@ -54,12 +54,13 @@ export const TentangProgramComponent = ({ campaigns = [] }) => {
 
       {/* Deskripsi */}
       <ActionSheetComponent
+        fullScreen={true}
         modalTitle='Deskripsi Program'
         withHeader={true}
         isOpen={showDescription}
         handleOnChange={() => setShowDescription(false)}
       >
-        <div className='flex flex-col justify-between rounded-t-xl h-72 overflow-y-auto scrollbar-hide'>
+        <div className='flex flex-col h-[800px] justify-between rounded-t-xl overflow-y-auto scrollbar-hide'>
           <div className='description px-4'>{parse(campaigns.description)}</div>
           <div className='sticky bottom-0 z-30 px-4 py-2 shadow bg-white'>
             <ButtonComponent

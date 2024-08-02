@@ -11,7 +11,7 @@ export const TestimonialComponent = () => {
 
   return (
     <section className='flex flex-col space-y-4'>
-      <span className='title-section'>Testimonial</span>
+      <span className='title-section'>Doa dan Harapan</span>
       <div className='grid grid-cols-1 gap-4'>
         {result?.map((item, i) => (
           <TestimonialItemComponent key={i} item={item} />

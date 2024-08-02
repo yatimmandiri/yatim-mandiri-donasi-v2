@@ -35,6 +35,19 @@ export default async function DetailTransaksiPage({ params }) {
         currency: 'IDR',
         value: donations.data[0].totaldonasi,
       },
+      donate: {
+        content_ids: [donations.data[0].relationship.campaigns.id],
+        content_name: donations.data[0].relationship.campaigns.name,
+        contents: [
+          {
+            id: donations.data[0].no_transaksi,
+            quantity: donations.data[0].quantity,
+          },
+        ],
+        num_items: donations.data[0].quantity,
+        currency: 'IDR',
+        value: donations.data[0].totaldonasi,
+      },
     },
     // conversationApi: {
     //   purchase: {

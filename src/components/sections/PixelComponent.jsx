@@ -60,6 +60,7 @@ export const FacebookPixel = () => {
         pixel?.summary &&
           ReactPixel.trackCustom('Summary', 'Summary', pixel?.summary);
         pixel?.purchase && ReactPixel.track('Purchase', pixel?.purchase);
+        pixel?.donate && ReactPixel.track('Donate', pixel?.donate);
       });
   }, [pathname, useSearch]);
 

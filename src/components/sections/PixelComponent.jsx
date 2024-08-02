@@ -52,7 +52,7 @@ export const FacebookPixel = () => {
       .then((x) => x.default)
       .then((ReactPixel) => {
         ReactPixel.init(process.env.FACEBOOK_PIXEL_ID);
-        ReactPixel.init(process.env.FACEBOOK_PIXEL_ID2);
+        // ReactPixel.init(process.env.FACEBOOK_PIXEL_ID2);
         ReactPixel.pageView();
 
         pixel?.viewContent &&

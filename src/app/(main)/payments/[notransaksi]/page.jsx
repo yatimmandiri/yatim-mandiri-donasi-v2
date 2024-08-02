@@ -24,7 +24,7 @@ export default async function DetailTransaksiPage({ params }) {
     pixel: {
       purchase: {
         content_ids: [donations.data[0].relationship.campaigns.id],
-        content_type: donations.data[0].relationship.campaigns.name,
+        content_name: donations.data[0].relationship.campaigns.name,
         contents: [
           {
             id: donations.data[0].no_transaksi,

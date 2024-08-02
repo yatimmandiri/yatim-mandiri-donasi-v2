@@ -63,15 +63,15 @@ export default async function DetailCampaignsPage({ params }) {
       },
     },
     gtm: {
-      selectItem: {
-        ecommerce: {
-          items: {
-            item_id: campaigns.data[0].id,
-            item_name: campaigns.data[0].campaign_name,
-            item_category: campaigns.data[0].categories_id,
-          },
-        },
-      },
+      // selectItem: {
+      //   ecommerce: {
+      //     items: {
+      //       item_id: campaigns.data[0].id,
+      //       item_name: campaigns.data[0].campaign_name,
+      //       item_category: campaigns.data[0].categories_id,
+      //     },
+      //   },
+      // },
       selectItems: {
         ecommerce: {
           items: {

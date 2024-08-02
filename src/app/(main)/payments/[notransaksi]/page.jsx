@@ -33,7 +33,7 @@ export default async function DetailTransaksiPage({ params }) {
         ],
         num_items: donations.data[0].quantity,
         currency: 'IDR',
-        value: donations.data[0].totaldonasi,
+        value: donations.data[0].total_donasi,
       },
       donate: {
         content_ids: [donations.data[0].relationship.campaigns.id],

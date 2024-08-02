@@ -54,6 +54,12 @@ export const FacebookPixel = () => {
         ReactPixel.init(process.env.FACEBOOK_PIXEL_ID);
         ReactPixel.init(process.env.FACEBOOK_PIXEL_ID2);
         ReactPixel.pageView();
+
+        pixel?.viewContent &&
+          ReactPixel.track('ViewContent', pixel?.viewContent);
+        pixel?.summary &&
+          ReactPixel.trackCustom('Summary', 'Summary', pixel?.summary);
+        pixel?.purchase && ReactPixel.track('Purchase', pixel?.purchase);
       });
   }, [pathname, useSearch]);
 

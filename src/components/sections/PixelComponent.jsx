@@ -62,7 +62,14 @@ export const FacebookPixel = () => {
         pixel?.purchase && ReactPixel.track('Purchase', pixel?.purchase);
         pixel?.donate && ReactPixel.track('Donate', pixel?.donate);
       });
-  }, [pathname, useSearch]);
+  }, [
+    pathname,
+    useSearch,
+    pixel?.viewContent,
+    pixel?.summary,
+    pixel?.purchase,
+    pixel?.donate,
+  ]);
 
   return null;
 };

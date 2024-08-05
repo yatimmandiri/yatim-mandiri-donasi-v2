@@ -37,7 +37,7 @@ export const FormRekeningComponent = () => {
                   className={'w-10 h-8 shadow-lg'}
                   src={
                     item.icon
-                      ? process.env.NEXT_PUBLIC_SITE_STORAGE + item.icon
+                      ? `${process.env.NEXT_PUBLIC_SITE_STORAGE}/${item.icon}`
                       : '/assets/images/placeholder.jpg'
                   }
                   alt={'logo'}

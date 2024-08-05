@@ -134,6 +134,7 @@ export const PaymentInfoComponent = () => {
               height={100}
               priority
             />
+            {/*  */}
             <div className='flex flex-col space-y-1.5'>
               <span className='font-semibold'>{rekenings.bank}</span>
               <span>A/n {rekenings.name}</span>

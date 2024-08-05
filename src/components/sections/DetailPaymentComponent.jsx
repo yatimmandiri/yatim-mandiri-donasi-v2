@@ -101,7 +101,7 @@ export const PaymentInfoComponent = () => {
                 className='w-12 h-8'
                 src={
                   rekenings.icon
-                    ? process.env.NEXT_PUBLIC_SITE_STORAGE + rekenings.icon
+                    ? `${process.env.NEXT_PUBLIC_SITE_STORAGE}/${rekenings.icon}`
                     : '/assets/images/placeholder.jpg'
                 }
                 alt={'logo'}

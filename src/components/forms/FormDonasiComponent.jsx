@@ -279,7 +279,7 @@ export const MetodePembayaranComponent = ({
             className='object-fill h-6 w-10'
             src={
               currentRekening?.icon
-                ? process.env.NEXT_PUBLIC_SITE_STORAGE + currentRekening.icon
+                ? `${process.env.NEXT_PUBLIC_SITE_STORAGE}/${currentRekening.icon}`
                 : '/assets/images/placeholder.jpg'
             }
             alt={'logo'}

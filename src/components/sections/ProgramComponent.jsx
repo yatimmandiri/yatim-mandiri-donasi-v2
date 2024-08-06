@@ -228,7 +228,7 @@ export const ProgramItemComponent = ({ item = [], priority = false }) => {
           className='object-center object-cover rounded'
         />
       </figure>
-      <div className='flex flex-col flex-1 justify-between space-y-4 h-32'>
+      <div className='flex flex-col flex-1 justify-between space-y-4 h-36'>
         <span className='font-semibold text-xs'>{item?.name}</span>
         <span className='text-gray-700 line-clamp-3 flex-1'>
           {item.excerpt}

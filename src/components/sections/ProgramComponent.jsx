@@ -230,7 +230,7 @@ export const ProgramItemComponent = ({ item = [], priority = false }) => {
       </figure>
       <div className='flex flex-col flex-1 justify-between space-y-4 h-32'>
         <span className='font-semibold text-xs'>{item?.name}</span>
-        <span className='text-gray-700 line-clamp-3 text-left'>
+        <span className='text-gray-700 line-clamp-3 flex-1'>
           {item.excerpt}
         </span>
         <div className='block'>

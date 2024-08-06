@@ -62,20 +62,20 @@ export const FacebookPixel = () => {
         pixel?.donate && ReactPixel.track('Donate', pixel?.donate);
       });
 
-    import('react-facebook-pixel')
-      .then((x) => x.default)
-      .then((ReactPixel) => {
-        ReactPixel.init(process.env.FACEBOOK_PIXEL_ID2);
-        ReactPixel.pageView();
-        ReactPixel.pageView();
+    // import('react-facebook-pixel')
+    //   .then((x) => x.default)
+    //   .then((ReactPixel) => {
+    //     ReactPixel.init(process.env.FACEBOOK_PIXEL_ID2);
+    //     ReactPixel.pageView();
+    //     ReactPixel.pageView();
 
-        pixel?.viewContent &&
-          ReactPixel.track('ViewContent', pixel?.viewContent);
-        pixel?.summary &&
-          ReactPixel.trackCustom('Summary', 'Summary', pixel?.summary);
-        pixel?.purchase && ReactPixel.track('Purchase', pixel?.purchase);
-        pixel?.donate && ReactPixel.track('Donate', pixel?.donate);
-      });
+    //     pixel?.viewContent &&
+    //       ReactPixel.track('ViewContent', pixel?.viewContent);
+    //     pixel?.summary &&
+    //       ReactPixel.trackCustom('Summary', 'Summary', pixel?.summary);
+    //     pixel?.purchase && ReactPixel.track('Purchase', pixel?.purchase);
+    //     pixel?.donate && ReactPixel.track('Donate', pixel?.donate);
+    //   });
   }, [
     pathname,
     useSearch,

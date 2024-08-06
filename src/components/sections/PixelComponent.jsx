@@ -69,7 +69,8 @@ export const FacebookPixel = () => {
         ReactPixel.pageView();
         ReactPixel.pageView();
 
-        pixel?.viewContent && pixel1.track('ViewContent', pixel?.viewContent);
+        pixel?.viewContent &&
+          ReactPixel.track('ViewContent', pixel?.viewContent);
         pixel?.summary &&
           ReactPixel.trackCustom('Summary', 'Summary', pixel?.summary);
         pixel?.purchase && ReactPixel.track('Purchase', pixel?.purchase);

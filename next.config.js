@@ -19,6 +19,10 @@ const nextConfig = {
       },
       {
         protocol: 'https',
+        hostname: 'donasi.yatimmandiri.org',
+      },
+      {
+        protocol: 'https',
         hostname: 'next.yatimmandiri.org',
       },
       {

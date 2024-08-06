@@ -51,22 +51,29 @@ export const FacebookPixel = () => {
     import('react-facebook-pixel')
       .then((x) => x.default)
       .then((ReactPixel) => {
-        const pixel1 = ReactPixel.init(process.env.FACEBOOK_PIXEL_ID);
-        const pixel2 = ReactPixel.init(process.env.FACEBOOK_PIXEL_ID2);
-        pixel1.pageView();
-        pixel2.pageView();
+        ReactPixel.init(process.env.FACEBOOK_PIXEL_ID);
+        ReactPixel.pageView();
+
+        pixel?.viewContent &&
+          ReactPixel.track('ViewContent', pixel?.viewContent);
+        pixel?.summary &&
+          ReactPixel.trackCustom('Summary', 'Summary', pixel?.summary);
+        pixel?.purchase && ReactPixel.track('Purchase', pixel?.purchase);
+        pixel?.donate && ReactPixel.track('Donate', pixel?.donate);
+      });
+
+    import('react-facebook-pixel')
+      .then((x) => x.default)
+      .then((ReactPixel) => {
+        ReactPixel.init(process.env.FACEBOOK_PIXEL_ID2);
+        ReactPixel.pageView();
+        ReactPixel.pageView();
 
         pixel?.viewContent && pixel1.track('ViewContent', pixel?.viewContent);
         pixel?.summary &&
-          pixel1.trackCustom('Summary', 'Summary', pixel?.summary);
-        pixel?.purchase && pixel1.track('Purchase', pixel?.purchase);
-        pixel?.donate && pixel1.track('Donate', pixel?.donate);
-
-        pixel?.viewContent && pixel2.track('ViewContent', pixel?.viewContent);
-        pixel?.summary &&
-          pixel2.trackCustom('Summary', 'Summary', pixel?.summary);
-        pixel?.purchase && pixel2.track('Purchase', pixel?.purchase);
-        pixel?.donate && pixel2.track('Donate', pixel?.donate);
+          ReactPixel.trackCustom('Summary', 'Summary', pixel?.summary);
+        pixel?.purchase && ReactPixel.track('Purchase', pixel?.purchase);
+        pixel?.donate && ReactPixel.track('Donate', pixel?.donate);
       });
   }, [
     pathname,

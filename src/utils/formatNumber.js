@@ -3,28 +3,11 @@ export const onlyNumber = (value) => {
 };
 
 export const formatPhone = (value) => {
-  const numericalChar = new Set([
-    '+',
-    '0',
-    '1',
-    '2',
-    '3',
-    '4',
-    '5',
-    '6',
-    '7',
-    '8',
-    '9',
-  ]);
+  const phoneNumber = onlyNumber(value);
 
-  let str = value
-    .split('')
-    .filter((char) => numericalChar.has(char))
-    .join('');
-
-  str = str.substring(0, 2) == '08' ? '628' + str.substring(2) : str;
-
-  return str;
+  return phoneNumber.substring(0, 2) == '08'
+    ? '628' + phoneNumber.substring(2)
+    : phoneNumber;
 };
 
 export const formatRupiah = (angka, prefix) => {

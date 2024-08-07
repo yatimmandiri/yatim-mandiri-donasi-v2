@@ -5,7 +5,7 @@ export const onlyNumber = (value) => {
 export const formatPhone = (value) => {
   const onlyNumberValue = onlyNumber(value);
 
-  return onlyNumberValue.replace(/0/g, '62');
+  return onlyNumberValue.replace('0', '62');
 };
 
 export const formatRupiah = (angka, prefix) => {

@@ -8,7 +8,7 @@ import {
 } from '@/components/partials/InputComponent';
 import { UseAuth } from '@/hooks/useAuth';
 import { UseTransaction } from '@/hooks/useTransaction';
-import { onlyNumber } from '@/utils/formatNumber';
+import { formatPhone } from '@/utils/formatNumber';
 import { Description, Field, Fieldset, Label } from '@headlessui/react';
 import { InformationCircleIcon } from '@heroicons/react/24/outline';
 import classNames from 'classnames';
@@ -49,8 +49,8 @@ export const FormDonasiComponent = () => {
     const { name, value } = event;
 
     if (name == 'handphone') {
-      event.value = onlyNumber(value);
-      setValue(name, onlyNumber(value));
+      event.value = formatPhone(value);
+      setValue(name, formatPhone(value));
     } else {
       event.value = value;
       setValue(name, value);

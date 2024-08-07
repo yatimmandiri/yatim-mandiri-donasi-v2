@@ -2,6 +2,12 @@ export const onlyNumber = (value) => {
   return value.replace(/\D+/g, '');
 };
 
+export const formatPhone = (value) => {
+  const onlyNumberValue = onlyNumber(value);
+
+  return onlyNumberValue.replace(/0/g, '62');
+};
+
 export const formatRupiah = (angka, prefix) => {
   var number_string = angka.replace(/[^,\d]/g, '').toString();
   var split = number_string.split(',');

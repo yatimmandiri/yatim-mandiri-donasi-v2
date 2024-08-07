@@ -3,9 +3,7 @@ export const onlyNumber = (value) => {
 };
 
 export const formatPhone = (value) => {
-  const onlyNumberValue = onlyNumber(value);
-
-  return onlyNumberValue;
+  return value.replace(/\D+/g, '');
 };
 
 export const formatRupiah = (angka, prefix) => {

@@ -3,7 +3,7 @@
 import { ButtonComponent } from '@/components/partials/ButtonComponent';
 import { InputTextComponent } from '@/components/partials/InputComponent';
 import { UseAuth } from '@/hooks/useAuth';
-import { onlyNumber } from '@/utils/formatNumber';
+import { formatPhone } from '@/utils/formatNumber';
 import { Fieldset } from '@headlessui/react';
 import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline';
 import { useRef, useState } from 'react';
@@ -30,7 +30,7 @@ export const FormRegisterComponent = () => {
   const onChangeValue = (event) => {
     const { name, value } = event;
 
-    const inputValue = name == 'handphone' ? onlyNumber(value) : value;
+    const inputValue = name == 'handphone' ? formatPhone(value) : value;
 
     event.value = inputValue;
     setValue(name, inputValue);

@@ -5,9 +5,12 @@ export const onlyNumber = (value) => {
 export const formatPhone = (value) => {
   const onlyNumberValue = onlyNumber(value);
 
-  return onlyNumberValue.substring(0, 2) == '08'
-    ? '628' + onlyNumberValue.substring(2)
-    : onlyNumberValue;
+  const str =
+    onlyNumberValue.substring(0, 2) == '08'
+      ? '628' + onlyNumberValue.substring(2)
+      : onlyNumberValue;
+
+  return str;
 };
 
 export const formatRupiah = (angka, prefix) => {

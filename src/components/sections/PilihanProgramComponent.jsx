@@ -65,7 +65,7 @@ export const PilihanProgramItemComponent = ({
           <div className='flex flex-row justify-between space-x-2 mt-1'>
             <span className='block'>Terkumpul :</span>
             <span className='font-medium block'>
-              {formatRupiah(item.relationship.total_donation, 'Rp')}
+              {formatRupiah(item.relationship.total_donation.toString(), 'Rp')}
             </span>
           </div>
         </div>

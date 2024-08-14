@@ -20,7 +20,7 @@ export const RecomendationProgramComponent = ({ title = false }) => {
 
   return (
     <section className='flex flex-col space-y-4'>
-      {title && <span className='title-section'>{title}</span>}
+      {title && <h1 className='title-section'>{title}</h1>}
       <div className='grid grid-cols-1 gap-4'>
         {data.map((item, i) => (
           <RecomendationProgramItemComponent
@@ -67,7 +67,7 @@ export const RecomendationProgramItemComponent = ({
         />
       </figure>
       <div className='flex flex-col flex-1 justify-between space-y-4 h-32'>
-        <span className='font-semibold text-xs'>{item?.name}</span>
+        <h2 className='font-semibold text-xs'>{item?.name}</h2>
         <div className='block'>
           <progress
             max={100}

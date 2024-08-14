@@ -8,7 +8,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 export const BeritaPenyaluranComponent = ({ data = [] }) => {
   return (
     <section className='flex flex-col space-y-4'>
-      <span className='title-section'>Berita Penyaluran</span>
+      <h1 className='title-section'>Berita Penyaluran</h1>
       <div className='block'>
         <Swiper
           modules={[Autoplay, Pagination]}
@@ -50,9 +50,7 @@ export const BeritaPenyaluranItemComponent = ({
         />
       </figure>
       <div className='block p-3'>
-        <span className='font-semibold line-clamp-2'>
-          {item?.title?.rendered}
-        </span>
+        <h2 className='font-semibold line-clamp-2'>{item?.title?.rendered}</h2>
         <div className='text-xs line-clamp-3 mt-3 text-justify'>
           {item?.excerpt?.rendered}
         </div>

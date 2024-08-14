@@ -13,6 +13,7 @@ import {
   AdjustmentsVerticalIcon,
   MagnifyingGlassIcon,
 } from '@heroicons/react/24/outline';
+import HTMLReactParser from 'html-react-parser';
 import Image from 'next/image';
 import Link from 'next/link';
 import InfiniteScroll from 'react-infinite-scroll-component';
@@ -36,7 +37,7 @@ export const ProgramComponent = ({ categories = [] }) => {
   return (
     <section className='flex flex-col space-y-4'>
       {searching && <ProgramSearchComponent categories={categories} />}
-      {titleSection && <span className='title-section'>{titleSection}</span>}
+      {titleSection && <h1 className='title-section'>{titleSection}</h1>}
       {empty && searchValue != '' && data?.length == 0 && !isLoading && (
         <NotFoundComponent />
       )}
@@ -228,16 +229,20 @@ export const ProgramItemComponent = ({ item = [], priority = false }) => {
           className='object-center object-cover rounded'
         />
       </figure>
-      <div className='flex flex-col flex-1 space-y-2 h-32'>
-        <span className='font-semibold text-xs'>{item?.name}</span>
-        <span className='text-gray-700 line-clamp-3'>{item.excerpt}</span>
-        <div className='block'>
+      <div className='w-1/2 space-y-1.5 justify-between h-32 flex flex-col'>
+        <div className='flex flex-col flex-1 space-y-2'>
+          <h2 className='font-semibold text-xs'>{item?.name}</h2>
+          <span className='text-gray-700 line-clamp-3'>
+            {HTMLReactParser(item?.excerpt)}
+          </span>
+        </div>
+        <div className='flex flex-col space-y-2'>
           <progress
             max={100}
             value={100}
             className='h-1 w-full text-baseColor-500'
           ></progress>
-          <div className='flex flex-row justify-between space-x-2 mt-1'>
+          <div className='flex flex-row justify-between space-x-2'>
             <span className='block'>Terkumpul :</span>
             <span className='font-medium block'>
               {formatRupiah(item.relationship.total_donation.toString(), 'Rp')}

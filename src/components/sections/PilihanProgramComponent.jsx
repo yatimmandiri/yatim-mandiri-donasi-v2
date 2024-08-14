@@ -9,7 +9,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 export const PilihanProgramComponent = ({ data = [] }) => {
   return (
     <section className='flex flex-col space-y-4'>
-      <span className='title-section'>Program Pilihan</span>
+      <h1 className='title-section'>Program Pilihan</h1>
       <div className='block'>
         <Swiper
           modules={[Autoplay, Pagination]}
@@ -55,7 +55,7 @@ export const PilihanProgramItemComponent = ({
         />
       </figure>
       <div className='flex flex-col justify-between h-28 p-3'>
-        <span className='font-semibold line-clamp-2'>{item?.name}</span>
+        <h2 className='font-semibold line-clamp-2'>{item?.name}</h2>
         <div className='block'>
           <progress
             max={100}

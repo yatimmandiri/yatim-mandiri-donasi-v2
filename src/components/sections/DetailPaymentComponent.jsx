@@ -49,9 +49,10 @@ export const PaymentInfoComponent = () => {
   switch (rekenings.group) {
     case 'e_money':
       if (
-        isMobile &&
-        donations?.deep_links != null &&
-        donations?.status == 'Pending'
+        (isMobile &&
+          donations?.deep_links != null &&
+          donations?.status == 'Pending') ||
+        rekenings?.provider == 'Dana'
       ) {
         router.push(donations?.deep_links);
       }

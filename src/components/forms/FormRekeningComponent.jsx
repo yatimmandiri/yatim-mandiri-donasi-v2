@@ -69,7 +69,9 @@ export const FormRekeningComponent = () => {
         </div>
         {rekenings
           .filter(
-            (item) => item.provider == 'Midtrans' && item.group == 'e_money'
+            (item) =>
+              (item.provider == 'Midtrans' || item.provider == 'Dana') &&
+              item.group == 'e_money'
           )
           .map((item, i) => (
             <Field

@@ -65,7 +65,15 @@ export const NominalComponent = () => {
         </div>
       );
     case 'T5':
-      break;
+      return (
+        <div className='flex flex-col space-y-3'>
+          <span>Isi Nominal Donasi</span>
+          <div className='flex flex-col space-y-3'>
+            <FormNominalComponent nominalField={true} quantityField={false} />
+            <ButtonNominalComponent />
+          </div>
+        </div>
+      );
     default:
       return (
         <div className='flex flex-col space-y-3'>
@@ -173,9 +181,20 @@ export const PilihanPaketComponent = () => {
 };
 
 export const ButtonNominalComponent = () => {
-  const nominals = [75000, 175000, 200000, 450000];
-  const { currentNominal, setCurrentNominal, nominalButtonSelected } =
-    UseTransaction();
+  const [nominals, setNominals] = useState([75000, 175000, 200000, 450000]);
+
+  const {
+    currentNominal,
+    setCurrentNominal,
+    nominalButtonSelected,
+    campaigns,
+  } = UseTransaction();
+
+  useEffect(() => {
+    if (campaigns.template == 'T5') {
+      setNominals(campaigns.nominal_choice.split(','));
+    }
+  }, [campaigns.template]);
 
   return (
     <div className='flex flex-row justify-around items-center space-x-2'>

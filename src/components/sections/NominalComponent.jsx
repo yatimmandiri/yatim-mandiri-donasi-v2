@@ -69,7 +69,7 @@ export const NominalComponent = () => {
         <div className='flex flex-col space-y-3'>
           <span>Pilih Paket Donasi</span>
           <div className='flex flex-col space-y-3'>
-            {/* <FormNominalComponent nominalField={true} quantityField={false} /> */}
+            <FormNominalComponent nominalField={true} quantityField={false} />
             <ButtonNominalComponent />
           </div>
         </div>

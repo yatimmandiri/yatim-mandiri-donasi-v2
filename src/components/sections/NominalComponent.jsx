@@ -2,7 +2,7 @@
 
 import { FormNominalComponent } from '@/components/forms/FormNominalComponent';
 import { UseTransaction } from '@/hooks/useTransaction';
-import { formatRupiah } from '@/utils/formatNumber';
+import { formatRupiah, onlyNumber } from '@/utils/formatNumber';
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from '@headlessui/react';
 import {
   InformationCircleIcon,
@@ -200,7 +200,7 @@ export const ButtonNominalComponent = () => {
       const noms = campaigns.nominal_choice.split(',').map((item) => {
         return {
           text: item,
-          value: parseInt(item.replaceAll('.', '')),
+          value: onlyNumber(item),
         };
       });
 

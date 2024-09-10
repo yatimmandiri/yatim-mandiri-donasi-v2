@@ -67,8 +67,8 @@ export const NominalComponent = () => {
     case 'T5':
       return (
         <div className='flex flex-col space-y-3'>
-          <span>Pilih Paket Donasi</span>
-          <div className='flex flex-col space-y-3'>
+          <span>Isi Nominal Donasi</span>
+          <div className='flex flex-col space-y-6'>
             <FormNominalComponent nominalField={true} quantityField={false} />
             <ButtonNominalComponent />
           </div>
@@ -209,25 +209,28 @@ export const ButtonNominalComponent = () => {
   }, [campaigns.template]);
 
   return (
-    <div
-      className={classNames(
-        'gap-4',
-        campaigns.template == 'T5' ? 'grid grid-cols-1' : 'grid grid-cols-4'
-      )}
-    >
-      {nominals.map((item, i) => (
-        <ButtonComponent
-          key={i}
-          text={`${item.text.toString()}`}
-          fullWidth={true}
-          variant={
-            currentNominal === formatRupiah(item.text.toString())
-              ? 'solid'
-              : 'outline'
-          }
-          onClick={() => nominalButtonSelected(item.value.toString())}
-        />
-      ))}
+    <div className='flex flex-col space-y-3'>
+      {campaigns.template == 'T5' && <span>PIlih Paket Donasi</span>}
+      <div
+        className={classNames(
+          'gap-4',
+          campaigns.template == 'T5' ? 'grid grid-cols-1' : 'grid grid-cols-4'
+        )}
+      >
+        {nominals.map((item, i) => (
+          <ButtonComponent
+            key={i}
+            text={`${item.text.toString()}`}
+            fullWidth={true}
+            variant={
+              currentNominal === formatRupiah(item.text.toString())
+                ? 'solid'
+                : 'outline'
+            }
+            onClick={() => nominalButtonSelected(item.value.toString())}
+          />
+        ))}
+      </div>
     </div>
   );
 };

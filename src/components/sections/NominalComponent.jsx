@@ -67,9 +67,9 @@ export const NominalComponent = () => {
     case 'T5':
       return (
         <div className='flex flex-col space-y-3'>
-          <span>Isi Nominal Donasi</span>
+          <span>Pilih Paket Donasi</span>
           <div className='flex flex-col space-y-3'>
-            <FormNominalComponent nominalField={true} quantityField={false} />
+            {/* <FormNominalComponent nominalField={true} quantityField={false} /> */}
             <ButtonNominalComponent />
           </div>
         </div>

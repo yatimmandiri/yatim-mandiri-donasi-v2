@@ -181,7 +181,12 @@ export const PilihanPaketComponent = () => {
 };
 
 export const ButtonNominalComponent = () => {
-  const [nominals, setNominals] = useState([75000, 175000, 200000, 450000]);
+  const [nominals, setNominals] = useState([
+    { text: '75.000', value: 75000 },
+    { text: '175.000', value: 175000 },
+    { text: '200.000', value: 200000 },
+    { text: '450.000', value: 450000 },
+  ]);
 
   const {
     currentNominal,
@@ -192,23 +197,35 @@ export const ButtonNominalComponent = () => {
 
   useEffect(() => {
     if (campaigns.template == 'T5') {
-      setNominals(campaigns.nominal_choice.split(','));
+      const noms = campaigns.nominal_choice.split(',').map((item) => {
+        return {
+          text: item,
+          value: parseInt(item.replaceAll('.', '')),
+        };
+      });
+
+      setNominals(noms);
     }
   }, [campaigns.template]);
 
   return (
-    <div className='flex flex-row justify-around items-center space-x-2'>
+    <div
+      className={classNames(
+        'gap-4',
+        campaigns.template == 'T5' ? 'grid grid-cols-1' : 'grid grid-cols-4'
+      )}
+    >
       {nominals.map((item, i) => (
         <ButtonComponent
           key={i}
-          text={`${formatRupiah(item.toString())}`}
+          text={`${item.text.toString()}`}
           fullWidth={true}
           variant={
-            currentNominal === formatRupiah(item.toString())
+            currentNominal === formatRupiah(item.text.toString())
               ? 'solid'
               : 'outline'
           }
-          onClick={() => nominalButtonSelected(item.toString())}
+          onClick={() => nominalButtonSelected(item.value.toString())}
         />
       ))}
     </div>

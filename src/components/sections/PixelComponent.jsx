@@ -2,9 +2,9 @@
 
 import { UseApp } from '@/hooks/useApp';
 import { usePathname, useSearchParams } from 'next/navigation';
-import { event, GoogleAnalytics } from 'nextjs-google-analytics';
+// import { event, GoogleAnalytics } from 'nextjs-google-analytics';
+import { GoogleAnalytics, sendGTMEvent } from '@next/third-parties/google';
 import { Suspense, useEffect } from 'react';
-import TagManager from 'react-gtm-module';
 import useHotjar from 'react-use-hotjar';
 import TiktokPixel from 'tiktok-pixel';
 
@@ -16,15 +16,16 @@ export const PixelComponent = () => {
     TiktokPixel.init(process.env.TIKTOK_PIXEL_ID);
     TiktokPixel.pageView();
 
-    TagManager.initialize({ gtmId: process.env.GOOGLE_TAG_MANAGER_ID });
+    // TagManager.initialize({ gtmId: process.env.GOOGLE_TAG_MANAGER_ID });
 
     initHotjar(process.env.hotjar, 6);
 
-    gtm?.selectItem && event('view_item', gtm?.selectItem);
-    gtm?.selectItems && event('view_items', gtm?.selectItems);
-    gtm?.viewItemList && event('view_items_list', gtm?.viewItemList);
-    gtm?.purchase && event('purchase', gtm?.purchase);
-    gtm?.addPaymentInfo && event('add_payment_info', gtm?.addPaymentInfo);
+    gtm?.selectItem && sendGTMEvent('view_item', gtm?.selectItem);
+    gtm?.selectItems && sendGTMEvent('view_items', gtm?.selectItems);
+    gtm?.viewItemList && sendGTMEvent('view_items_list', gtm?.viewItemList);
+    gtm?.purchase && sendGTMEvent('purchase', gtm?.purchase);
+    gtm?.addPaymentInfo &&
+      sendGTMEvent('add_payment_info', gtm?.addPaymentInfo);
   }, [
     initHotjar,
     gtm?.addPaymentInfo,
@@ -37,7 +38,7 @@ export const PixelComponent = () => {
   return (
     <Suspense fallback={null}>
       <FacebookPixel />
-      <GoogleAnalytics gaMeasurementId={process.env.GOOGLE_ANALYTICS_ID} />
+      <GoogleAnalytics gaId={process.env.GOOGLE_ANALYTICS_ID} />
     </Suspense>
   );
 };

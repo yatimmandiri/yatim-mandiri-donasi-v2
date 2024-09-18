@@ -4,6 +4,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 
 import { AuthProvider } from '@/hooks/useAuth';
+import { GoogleTagManager } from '@next/third-parties/google';
 import { Inter } from 'next/font/google';
 import { Suspense } from 'react';
 
@@ -42,6 +43,8 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang='en' className={inter.className}>
+      <GoogleTagManager gtmId={process.env.GOOGLE_TAG_MANAGER_ID} />
+      <GoogleTagManager gtmId={process.env.GOOGLE_TAG_MANAGER_ID2} />
       <body>
         <Suspense fallback={<></>}>
           <AuthProvider>{children}</AuthProvider>

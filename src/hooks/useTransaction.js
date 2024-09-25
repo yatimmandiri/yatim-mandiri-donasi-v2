@@ -21,7 +21,7 @@ export const TransactionProvider = ({
   const formDonasi = searchParams.get('formDonasi');
   const nominal = searchParams.get('nominal');
   const quantity = searchParams.get('quantity');
-  const referal = searchParams.get('referal');
+  const referal = searchParams.get('ref');
 
   const [currentNominal, setCurrentNominal] = useState('');
   const [currentQuantity, setCurrentQuantity] = useState(1);

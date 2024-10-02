@@ -2,6 +2,7 @@
 
 import { laravel } from '@/libs/axios';
 import { GetDataCampaign } from '@/services/AppService';
+import { useSearchParams } from 'next/navigation';
 import { createContext, useContext, useEffect, useState } from 'react';
 import useSWR from 'swr';
 
@@ -25,6 +26,9 @@ export const CampaignProvider = ({
   categoriesId = false,
   children,
 }) => {
+  const searchParams = useSearchParams();
+  const referal = searchParams.get('ref');
+
   const [titleSection, setTitleSection] = useState(title);
   const [result, setResult] = useState(data);
   const [currentPage, setCurrentPage] = useState(1);
@@ -217,6 +221,7 @@ export const CampaignProvider = ({
     resetSelected,
     removeSelected,
     resetAll,
+    referal,
   };
 
   return (

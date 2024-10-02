@@ -22,6 +22,7 @@ export default async function DetailCampaignsPage({ params }) {
   const [campaigns] = await Promise.all([
     GetDataCampaign({
       slug: params.campaigns,
+      referal: params.ref,
     }),
   ]);
 

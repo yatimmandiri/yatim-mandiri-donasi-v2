@@ -4,7 +4,7 @@ import { laravel } from '@/libs/axios';
 import { formatRupiah } from '@/utils/formatNumber';
 import { notification } from '@/utils/toast';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useRef, useState } from 'react';
 
 export const TransactionContext = createContext({ empty: true });
 
@@ -116,6 +116,23 @@ export const TransactionProvider = ({
     quantity,
     rekeningPopuler,
   ]);
+
+  const count = useRef(null);
+
+  useEffect(() => {
+    if (campaigns) {
+      if (count.current == null) {
+        laravel.post('/api/backend/v1/visitors', {
+          campaign_id: campaigns?.id,
+          referals: referal ? referal : '',
+        });
+      }
+
+      return () => {
+        count.current = 1;
+      };
+    }
+  }, [campaigns, referal]);
 
   const contextValue = {
     campaigns,

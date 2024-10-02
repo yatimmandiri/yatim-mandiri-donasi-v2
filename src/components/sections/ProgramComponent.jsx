@@ -16,6 +16,7 @@ import {
 import HTMLReactParser from 'html-react-parser';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 export const ProgramComponent = ({ categories = [] }) => {
@@ -210,9 +211,25 @@ export const ProgramSearchComponent = ({ categories = [] }) => {
 };
 
 export const ProgramItemComponent = ({ item = [], priority = false }) => {
+  const { referal } = UseCampaign();
+  const [linkItem, setLinkItem] = useState('');
+
+  useEffect(() => {
+    setLinkItem(
+      referal
+        ? '/' +
+            item.relationship.categories.slug +
+            '/' +
+            item.slug +
+            '?ref=' +
+            referal
+        : '/' + item.relationship.categories.slug + '/' + item.slug
+    );
+  }, [referal]);
+
   return (
     <Link
-      href={'/' + item.relationship.categories.slug + '/' + item.slug}
+      href={linkItem}
       className='flex flex-row space-x-3 items-start justify-center rounded-lg overflow-hidden border shadow-md p-2'
     >
       <figure className='relative object-center overflow-hidden w-1/2 h-32'>
